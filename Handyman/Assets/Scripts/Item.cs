@@ -6,12 +6,12 @@ public class Item : MonoBehaviour
 {
     #region PROPERTIES
     string itemName;
-    float rotationSpeed = 130f;
+    float rotationSpeed = 290f;
     public Sprite itemImage;
     #endregion
 
     #region ATTACK
-    float attackDuration = 1f;
+    float attackDuration = 0.4f;
     float attackCooldownResetTime;
     #endregion
 
@@ -37,6 +37,7 @@ public class Item : MonoBehaviour
 
     public void EquipItem(EquippedSlot slot)
     {
+
         currentPlayerSlot = slot;
         currentState = ItemState.Equipped;
         
@@ -49,6 +50,16 @@ public class Item : MonoBehaviour
         {
             transform.position = playerController.rightLimbPosition.position; 
         }
+        if (slot == EquippedSlot.Head)
+        {
+            transform.position = playerController.headPosition.position;
+        }
+        if (slot == EquippedSlot.LeftHand)
+        {
+            transform.position = playerController.leftLimbPosition.position;
+        }
+
+        DisableChildren(false);
     }
 
     public void AddToInventory()
@@ -68,7 +79,7 @@ public class Item : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            child.gameObject.SetActive(false);
+            child.gameObject.SetActive(!isAddingToInventory);
         }
     }
 
@@ -95,12 +106,6 @@ public class Item : MonoBehaviour
 
     private void Update()
     {
-        // TEMPORARY FOR TESTING    
-        if (Input.GetKey(KeyCode.E))
-        {
-            EquipItem(EquippedSlot.RightHand);
-        }
-
         if (isAttacking)
         {
             Attack();

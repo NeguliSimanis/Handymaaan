@@ -576,6 +576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotButton: {fileID: 209578982}
   equippedSlots: {fileID: 0}
+  playerBag: {fileID: 0}
   isFilled: 0
   slotID: 4
 --- !u!1 &227860897
@@ -705,8 +706,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotButton: {fileID: 227860899}
   equippedSlots: {fileID: 0}
+  playerBag: {fileID: 0}
   isFilled: 0
   slotID: 10
+--- !u!1 &234862820
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 234862821}
+  m_Layer: 0
+  m_Name: HeadPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &234862821
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 234862820}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.06, y: 0.82, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1034815655}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &259570616
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,6 +769,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotButton: {fileID: 259570618}
   equippedSlots: {fileID: 0}
+  playerBag: {fileID: 0}
   isFilled: 0
   slotID: 11
 --- !u!114 &259570618
@@ -1206,6 +1237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotButton: {fileID: 361673582}
   equippedSlots: {fileID: 0}
+  playerBag: {fileID: 0}
   isFilled: 0
   slotID: 5
 --- !u!1 &400356787
@@ -2056,6 +2088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotButton: {fileID: 658095530}
   equippedSlots: {fileID: 0}
+  playerBag: {fileID: 0}
   isFilled: 0
   slotID: 3
 --- !u!1 &738260936
@@ -2069,6 +2102,7 @@ GameObject:
   - component: {fileID: 738260940}
   - component: {fileID: 738260939}
   - component: {fileID: 738260938}
+  - component: {fileID: 738260941}
   m_Layer: 5
   m_Name: Head
   m_TagString: Untagged
@@ -2171,6 +2205,46 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 738260936}
   m_CullTransparentMesh: 0
+--- !u!114 &738260941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 738260936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a36f4b449da1c54997d870bbb3c7e48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotType: 2
+--- !u!1 &739987229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 739987230}
+  m_Layer: 0
+  m_Name: LeftHandPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &739987230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 739987229}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.61, y: 0.398, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1034815655}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &806950590
 GameObject:
   m_ObjectHideFlags: 0
@@ -2298,6 +2372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotButton: {fileID: 806950592}
   equippedSlots: {fileID: 0}
+  playerBag: {fileID: 0}
   isFilled: 0
   slotID: 9
 --- !u!1 &922040335
@@ -2427,6 +2502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotButton: {fileID: 922040337}
   equippedSlots: {fileID: 0}
+  playerBag: {fileID: 0}
   isFilled: 0
   slotID: 8
 --- !u!1 &923400146
@@ -2773,6 +2849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotButton: {fileID: 1014486252}
   equippedSlots: {fileID: 0}
+  playerBag: {fileID: 0}
   isFilled: 0
   slotID: 6
 --- !u!1 &1015752686
@@ -2902,6 +2979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotButton: {fileID: 1015752688}
   equippedSlots: {fileID: 0}
+  playerBag: {fileID: 0}
   isFilled: 0
   slotID: 2
 --- !u!1 &1021235740
@@ -3122,6 +3200,9 @@ MonoBehaviour:
   equippedLimbs: []
   inventory: []
   rightLimbPosition: {fileID: 1081880175}
+  leftLimbPosition: {fileID: 739987230}
+  headPosition: {fileID: 234862821}
+  inventoryPanel: {fileID: 104389841}
 --- !u!61 &1034815654
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3159,6 +3240,8 @@ Transform:
   m_Children:
   - {fileID: 1483438362}
   - {fileID: 1081880175}
+  - {fileID: 739987230}
+  - {fileID: 234862821}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3740,6 +3823,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotButton: {fileID: 1236535272}
   equippedSlots: {fileID: 0}
+  playerBag: {fileID: 0}
   isFilled: 0
   slotID: 7
 --- !u!1 &1304952989
@@ -4810,6 +4894,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotButton: {fileID: 1676227414}
   equippedSlots: {fileID: 0}
+  playerBag: {fileID: 0}
   isFilled: 0
   slotID: 0
 --- !u!1 &1678954224
@@ -4939,6 +5024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotButton: {fileID: 1678954226}
   equippedSlots: {fileID: 0}
+  playerBag: {fileID: 0}
   isFilled: 0
   slotID: 1
 --- !u!1 &1717370971
@@ -4952,6 +5038,7 @@ GameObject:
   - component: {fileID: 1717370975}
   - component: {fileID: 1717370974}
   - component: {fileID: 1717370973}
+  - component: {fileID: 1717370976}
   m_Layer: 5
   m_Name: LeftArm
   m_TagString: Untagged
@@ -5054,6 +5141,18 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1717370971}
   m_CullTransparentMesh: 0
+--- !u!114 &1717370976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1717370971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a36f4b449da1c54997d870bbb3c7e48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotType: 1
 --- !u!1 &1720912123
 GameObject:
   m_ObjectHideFlags: 0
@@ -5416,6 +5515,7 @@ GameObject:
   - component: {fileID: 1890670392}
   - component: {fileID: 1890670391}
   - component: {fileID: 1890670390}
+  - component: {fileID: 1890670393}
   m_Layer: 5
   m_Name: RightArm
   m_TagString: Untagged
@@ -5518,6 +5618,18 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1890670388}
   m_CullTransparentMesh: 0
+--- !u!114 &1890670393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1890670388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a36f4b449da1c54997d870bbb3c7e48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotType: 0
 --- !u!1 &1894953995
 GameObject:
   m_ObjectHideFlags: 0

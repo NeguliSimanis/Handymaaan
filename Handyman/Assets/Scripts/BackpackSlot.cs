@@ -7,6 +7,7 @@ public class BackpackSlot : MonoBehaviour
 {
     [SerializeField] Button slotButton;
     public EquippedSlots equippedSlots;
+    public PlayerBag playerBag; // all slots
     public bool isFilled = false;
     public int slotID;
     private Item itemInSlot;
@@ -23,7 +24,31 @@ public class BackpackSlot : MonoBehaviour
 
     private void SelectSlot()
     {
-        equippedSlots.ShowEquippableSlots(itemInSlot);
+        equippedSlots.ShowEquippableSlots(itemInSlot, this);
+        gameObject.GetComponent<Image>().color = Color.yellow;
+        UnselectAllOtherSlots();
+    }
+
+    private void UnselectAllOtherSlots()
+    {
+        foreach (BackpackSlot slot in playerBag.bagSlots)
+        {
+            if (slot.slotID != slotID)
+            {
+                slot.gameObject.GetComponent<Image>().color = Color.white;
+            }
+        }
+    }
+
+    public void EmptySlot()
+    {
+        isFilled = false;
+        slotButton.interactable = false;
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+        gameObject.GetComponent<Image>().color = Color.white;
     }
 
     public void FillSlot(Item itemToAdd)

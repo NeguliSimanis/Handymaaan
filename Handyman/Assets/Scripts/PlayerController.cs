@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public List<Item> equippedLimbs = new List<Item>();
     public List<Item> inventory = new List<Item>();
     public Transform rightLimbPosition;
+    public Transform leftLimbPosition;
+    public Transform headPosition;
     #endregion
 
     #region MOVEMENT
@@ -25,6 +27,12 @@ public class PlayerController : MonoBehaviour
     private bool isAttackCooldown = false; // true while you cannot attack because cooldown is active
     private float attackCooldownResetTime;
     #endregion
+
+    #region UI
+    [SerializeField]
+    GameObject inventoryPanel;
+    #endregion
+
 
     private void Start()
     {
@@ -39,6 +47,15 @@ public class PlayerController : MonoBehaviour
         ManageMovementInput();
         ManageAttackInput();
         ResetAttackCooldown();
+        ManageKeyInput();
+    }
+
+    void ManageKeyInput()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            inventoryPanel.SetActive(!inventoryPanel.activeInHierarchy);
+        }
     }
 
     void ResetAttackCooldown()
@@ -74,16 +91,18 @@ public class PlayerController : MonoBehaviour
 
     void ManageMovementInput()
     {
-        if (Input.GetMouseButton(0))
-        {
-            GetTargetPositionAndDirection();
-            CheckIfPlayerIsWalking();
-        }
-        if (isWalking)
-        {
-            CheckIfPlayerIsWalking();
-            MovePlayer();
-        }
+        
+        transform.position = new Vector2(transform.position.x, transform.position.y) + new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * PlayerData.current.moveSpeed * Time.deltaTime;
+        /*if (Input.GetMouseButton(0))
+         {
+             GetTargetPositionAndDirection();
+             CheckIfPlayerIsWalking();
+         }
+         if (isWalking)
+         {
+             CheckIfPlayerIsWalking();
+             MovePlayer();
+         }*/
     }
 
     void CheckIfPlayerIsWalking()
