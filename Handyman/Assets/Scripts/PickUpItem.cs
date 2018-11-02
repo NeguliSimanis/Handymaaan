@@ -8,6 +8,7 @@ public class PickUpItem : MonoBehaviour
     Item item;
     string playerTag = "Player";
     bool canBePickedUp = false; // can pick up item if player is in the collider area;
+    bool pickUpCommandReceived = false; // player picked on the item but was outside of the area
 
 
     void OnTriggerEnter2D(Collider2D col)
@@ -15,6 +16,10 @@ public class PickUpItem : MonoBehaviour
         if (col.gameObject.tag == playerTag)
         {
             canBePickedUp = true;
+            if (pickUpCommandReceived)
+            {
+                item.AddToInventory();
+            }
         }
     }
 
@@ -33,6 +38,10 @@ public class PickUpItem : MonoBehaviour
         {
             Debug.Log("PICK UP");
             item.AddToInventory();
+        }
+        else
+        {
+            pickUpCommandReceived = true;
         }
     }
 }
