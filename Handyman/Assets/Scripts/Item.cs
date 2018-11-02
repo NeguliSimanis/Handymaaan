@@ -7,6 +7,7 @@ public class Item : MonoBehaviour
     #region PROPERTIES
     string itemName;
     float rotationSpeed = 130f;
+    public Sprite itemImage;
     #endregion
 
     #region ATTACK
@@ -53,7 +54,7 @@ public class Item : MonoBehaviour
     public void AddToInventory()
     {
         currentState = ItemState.InInventory;
-        playerController.inventory.Add(this);
+        playerController.AddItemToInventory(this);
 
         DisableChildren(true);
         
@@ -67,7 +68,6 @@ public class Item : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            Debug.Log(child.gameObject.name);
             child.gameObject.SetActive(false);
         }
     }

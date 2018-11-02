@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    #region
+    #region ITEMS
+    [SerializeField]
+    PlayerBag playerBag;
+    [SerializeField]
+    EquippedSlots equippedSlots;
+
     public List<Item> equippedLimbs = new List<Item>();
     public List<Item> inventory = new List<Item>();
     public Transform rightLimbPosition;
@@ -110,5 +115,14 @@ public class PlayerController : MonoBehaviour
     void MovePlayer()
     {
         transform.position = new Vector2(transform.position.x, transform.position.y) + dirNormalized * PlayerData.current.moveSpeed * Time.deltaTime;
+    }
+
+    public void AddItemToInventory(Item itemToAdd)
+    {
+        inventory.Add(itemToAdd);
+
+        BackpackSlot slotToFill = playerBag.GetNextFreeSlot();
+        slotToFill.FillSlot(itemToAdd);
+        slotToFill.equippedSlots = equippedSlots;
     }
 }

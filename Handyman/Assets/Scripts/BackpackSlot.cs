@@ -1,25 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BackpackSlot : MonoBehaviour
-
 {
-    bool isFilled = false;
+    [SerializeField] Button slotButton;
+    public EquippedSlots equippedSlots;
+    public bool isFilled = false;
     public int slotID;
+    private Item itemInSlot;
 
-	
     void Start()
     {
-        if (isFilled = false)
+        slotButton = gameObject.GetComponent<Button>();
+        if (isFilled == false)
         {
-
+            slotButton.interactable = false;
         }
+        slotButton.onClick.AddListener(SelectSlot);
     }
 
-    public void FillSlot()
+    private void SelectSlot()
     {
+        equippedSlots.ShowEquippableSlots(itemInSlot);
+    }
 
+    public void FillSlot(Item itemToAdd)
+    {
+        itemInSlot = itemToAdd;
+        isFilled = true;
+        slotButton.interactable = true;
+
+        int currentChildID = 0;
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(true);
+            // set item image
+            if (currentChildID==0)
+            {
+                Image childImage = child.gameObject.GetComponent<Image>();
+                childImage.sprite = itemToAdd.itemImage;
+                childImage.preserveAspect = true;  
+            }
+            currentChildID++;
+        }
     }
 
     

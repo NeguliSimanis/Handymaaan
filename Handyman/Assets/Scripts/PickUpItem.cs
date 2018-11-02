@@ -36,7 +36,6 @@ public class PickUpItem : MonoBehaviour
     {
         if (canBePickedUp)
         {
-            Debug.Log("PICK UP");
             item.AddToInventory();
         }
         else
