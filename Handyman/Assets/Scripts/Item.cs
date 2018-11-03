@@ -38,7 +38,7 @@ public class Item : MonoBehaviour
 
     #region CURRENT STATE
     public enum ItemState { OnGround, InInventory, Equipped, EquippedByEnemy, CarriedByEnemy};
-    public enum EquippedSlot { RightHand, LeftHand, Head};
+    public enum EquippedSlot { RightHand, LeftHand, Head, LeftLeg, RightLeg};
     public EquippedSlot currentPlayerSlot; // slot in which the item is equipped
     public ItemState currentState;
     private bool isAttacking = false;

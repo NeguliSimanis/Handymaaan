@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //[SerializeField]
+   // Rigidbody2D thisRigidBody;
+
     #region ITEMS
     [SerializeField]
     PlayerBag playerBag;
@@ -14,6 +17,8 @@ public class PlayerController : MonoBehaviour
     public List<Item> inventory = new List<Item>();
     public Transform rightLimbPosition;
     public Transform leftLimbPosition;
+    public Transform leftLegPosition;
+    public Transform rightLegPosition;
     public Transform headPosition;
     #endregion
 
@@ -54,6 +59,7 @@ public class PlayerController : MonoBehaviour
         CheckIfDead();
         CheckWherePlayerIsFacing();
     }
+
 
     void CheckWherePlayerIsFacing() 
     {
