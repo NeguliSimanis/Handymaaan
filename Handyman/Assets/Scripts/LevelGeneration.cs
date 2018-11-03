@@ -23,10 +23,16 @@ public class LevelGeneration : MonoBehaviour {
     float maxAllowedDistanceToRight = 26.73777f; // if you move further away, level generator object instantiates a new level segment and moves closer
     float maxAllowedDistanceToLeft = 12.97923f; // -''-
 
+    private float levelSegmentWidth;
+    private float incrementLength;
+
 	void Start ()
     {
-       // Debug.Log("distance to right point " + (rightGenerationPoint.position.x - transform.position.x)); // 26.73777
-       // Debug.Log("distance to left point " + (transform.position.x - leftGenerationPoint.position.x)); // 12.97923
+        // Debug.Log("distance to right point " + (rightGenerationPoint.position.x - transform.position.x)); // 26.73777
+        // Debug.Log("distance to left point " + (transform.position.x - leftGenerationPoint.position.x)); // 12.97923
+        levelSegmentWidth = defaultLevelSegment[0].transform.GetChild(0).gameObject.GetComponent<BoxCollider2D>().size.x;
+        incrementLength = 0.9f * levelSegmentWidth;
+       
     }
 	
 	// Update is called once per frame
@@ -73,13 +79,13 @@ public class LevelGeneration : MonoBehaviour {
     {
         if (moveRight)
         {
-            transform.position = new Vector3(transform.position.x + 2, transform.position.y, transform.position.y);
-            maxAllowedDistanceToLeft += 2;
+            transform.position = new Vector3(transform.position.x + incrementLength, transform.position.y, transform.position.y);
+            maxAllowedDistanceToLeft += incrementLength;
         }
         else
         {
-            transform.position = new Vector3(transform.position.x - 2, transform.position.y, transform.position.y);
-            maxAllowedDistanceToRight += 2;
+            transform.position = new Vector3(transform.position.x - incrementLength, transform.position.y, transform.position.y);
+            maxAllowedDistanceToRight += incrementLength;
         }
     }
 }

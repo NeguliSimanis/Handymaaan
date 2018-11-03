@@ -19,8 +19,8 @@ TagManager:
   - Limbs
   - MoonBackground
   - MountainsBackground
-  - 
-  - 
+  - GrassForeground1
+  - GrassForeground2
   - 
   - 
   - 
@@ -51,4 +51,7 @@ TagManager:
     locked: 0
   - name: Middleground
     uniqueID: 3290667919
+    locked: 0
+  - name: Foreground
+    uniqueID: 829375901
     locked: 0
