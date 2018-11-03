@@ -1,6 +1,6 @@
 # Handymaaan
 
-##Controls
-*movement - WASD
-*pick up item - F
-*open inventory - I
+## Controls
+* movement - WASD
+* pick up item - F
+* open inventory - I
