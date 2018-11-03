@@ -20,18 +20,31 @@ public class LevelGeneration : MonoBehaviour {
     [SerializeField]
     Transform rightGenerationPoint;
 
-    float maxAllowedDistanceToRight = 26.73777f; // if you move further away, level generator object instantiates a new level segment and moves closer
-    float maxAllowedDistanceToLeft = 12.97923f; // -''-
+    [SerializeField] float maxAllowedDistanceToRight = 26.73777f; // if you move further away, level generator object instantiates a new level segment and moves closer
+    [SerializeField] float maxAllowedDistanceToLeft = 12.97923f; // -''-
 
     private float levelSegmentWidth;
     private float incrementLength;
+    [SerializeField] float incrementMultiplier = 0.9f;
 
-	void Start ()
+  /* #region MOUNTAINS
+    [Header("MOUNTAINS")]
+    [SerializeField]
+    GameObject[] defaultMountainSegment;
+
+    [SerializeField]
+    Transform rightMountainGenerationPoint;
+
+    [SerializeField]
+    Transform leftMountainGenerationPoint;
+    #endregion*/
+
+    void Start ()
     {
         // Debug.Log("distance to right point " + (rightGenerationPoint.position.x - transform.position.x)); // 26.73777
         // Debug.Log("distance to left point " + (transform.position.x - leftGenerationPoint.position.x)); // 12.97923
         levelSegmentWidth = defaultLevelSegment[0].transform.GetChild(0).gameObject.GetComponent<BoxCollider2D>().size.x;
-        incrementLength = 0.9f * levelSegmentWidth;
+        incrementLength = incrementMultiplier * levelSegmentWidth;
        
     }
 	
@@ -61,6 +74,11 @@ public class LevelGeneration : MonoBehaviour {
     {
         GameObject levelSegment = Instantiate(defaultLevelSegment[0], null);
         levelSegment.transform.position = new Vector3(leftGenerationPoint.transform.position.x, transform.position.y, 0f);
+
+       /* // generate mountain
+        GameObject mountainSegment = Instantiate(defaultMountainSegment[0], null);
+        mountainSegment.transform.position = new Vector3(leftMountainGenerationPoint.transform.position.x, transform.position.y, 0f);*/
+
         MoveOnXAxis(false);
         
     }
@@ -72,6 +90,11 @@ public class LevelGeneration : MonoBehaviour {
     {
         GameObject levelSegment = Instantiate(defaultLevelSegment[0], null);
         levelSegment.transform.position = new Vector3 (rightGenerationPoint.transform.position.x, transform.position.y, 0f);
+
+       /* // generate mountain
+        GameObject mountainSegment = Instantiate(defaultMountainSegment[0], null);
+        mountainSegment.transform.position = new Vector3(rightMountainGenerationPoint.transform.position.x, transform.position.y, 0f);*/
+
         MoveOnXAxis(true);
     }
 
