@@ -7,7 +7,7 @@ public class PlayerData
     public static PlayerData current;
 
     #region MOVEMENT
-    public float moveSpeed = 2.2f;
+    public float moveSpeed = 3.2f;
     #endregion
 
     #region ATTACK

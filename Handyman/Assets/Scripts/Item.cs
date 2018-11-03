@@ -11,8 +11,10 @@ public class Item : MonoBehaviour
     #endregion
 
     #region ATTACK
+    [SerializeField] int attackDamage;
     float attackDuration = 0.4f;
     float attackCooldownResetTime;
+    float attackStartTime;
     #endregion
 
     #region CURRENT STATE
@@ -98,15 +100,24 @@ public class Item : MonoBehaviour
     {
         isAttacking = true;
         attackCooldownResetTime = Time.time + attackDuration;
-        Debug.Log("attacking with limb!");
+        attackStartTime = Time.time;
     }
 
     private void Attack()
     {
-        // Rotate the object around its local Z axis
-        transform.Rotate(0, 0, Time.deltaTime * rotationSpeed);
+        // Rotate the object around its local Z axis. Rotation speed increases the more time has passed since attack started
+        transform.Rotate(0, 0, Time.deltaTime * rotationSpeed * (1+ (Time.time - attackStartTime)));
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("collision");
+        if (isAttacking && collision.gameObject.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<EnemyController>().TakeDamage(attackDamage);
+        }
+    }
+
     private void ResetAttackCooldown()
     {
         if (Time.time > attackCooldownResetTime)
