@@ -11,12 +11,17 @@ public class LevelGeneration : MonoBehaviour {
     GameObject[] defaultLevelSegment;
 
     [SerializeField]
+    Transform leftVisibilityPoint;
+    [SerializeField]
     Transform leftGenerationPoint;
+
+    [SerializeField]
+    Transform rightVisibilityPoint;
     [SerializeField]
     Transform rightGenerationPoint;
 
-    float maxAllowedDistanceToRight = 27; // if you move further away, level generator object instantiates a new level segment and moves closer
-    float maxAllowedDistanceToLeft = 13; // -''-
+    float maxAllowedDistanceToRight = 26.73777f; // if you move further away, level generator object instantiates a new level segment and moves closer
+    float maxAllowedDistanceToLeft = 12.97923f; // -''-
 
 	void Start ()
     {
@@ -28,19 +33,18 @@ public class LevelGeneration : MonoBehaviour {
 	void Update ()
     {
         //Debug.Log("distance to right point " + (rightGenerationPoint.position.x - transform.position.x)); // 26.73777
-        Debug.Log("distance to left point " + (transform.position.x - leftGenerationPoint.position.x)); // 12.97923
+        //Debug.Log("distance to left point " + (transform.position.x - leftVisibilityPoint.position.x)); // 12.97923
 
         // check distance to left point
-        if (transform.position.x - leftGenerationPoint.position.x > maxAllowedDistanceToLeft)
-        {
-            GenerateRightSegment();
-        }
-
-
-        // check distance to right point    
-        if (rightGenerationPoint.position.x - transform.position.x > maxAllowedDistanceToRight)
+        if (transform.position.x - leftVisibilityPoint.position.x > maxAllowedDistanceToLeft)
         {
             GenerateLeftSegment();
+        }
+
+        // check distance to right point    
+        if (rightVisibilityPoint.position.x - transform.position.x > maxAllowedDistanceToRight)
+        {
+            GenerateRightSegment();
         }
     }
 
@@ -49,8 +53,9 @@ public class LevelGeneration : MonoBehaviour {
     /// </summary>
     void GenerateLeftSegment()
     {
-        Instantiate(defaultLevelSegment[0],leftGenerationPoint);
-        MoveToPlayerXPosition();
+        GameObject levelSegment = Instantiate(defaultLevelSegment[0], null);
+        levelSegment.transform.position = new Vector3(leftGenerationPoint.transform.position.x, transform.position.y, 0f);
+        MoveOnXAxis(false);
         
     }
 
@@ -59,12 +64,22 @@ public class LevelGeneration : MonoBehaviour {
     /// </summary>
     void GenerateRightSegment()
     {
-        Instantiate(defaultLevelSegment[0], rightGenerationPoint);
-        MoveToPlayerXPosition();
+        GameObject levelSegment = Instantiate(defaultLevelSegment[0], null);
+        levelSegment.transform.position = new Vector3 (rightGenerationPoint.transform.position.x, transform.position.y, 0f);
+        MoveOnXAxis(true);
     }
 
-    void MoveToPlayerXPosition()
+    void MoveOnXAxis(bool moveRight)
     {
-        transform.position = new Vector3(player.position.x, transform.position.y, transform.position.y);
+        if (moveRight)
+        {
+            transform.position = new Vector3(transform.position.x + 2, transform.position.y, transform.position.y);
+            maxAllowedDistanceToLeft += 2;
+        }
+        else
+        {
+            transform.position = new Vector3(transform.position.x - 2, transform.position.y, transform.position.y);
+            maxAllowedDistanceToRight += 2;
+        }
     }
 }
