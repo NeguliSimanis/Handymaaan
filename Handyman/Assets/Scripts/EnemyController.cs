@@ -100,11 +100,17 @@ public class EnemyController : MonoBehaviour
     {
         if (!isAttackCooldown)
         {
-            Debug.Log("ATTACKING PLAYER " + Time.time);
             isAttackCooldown = true;
             attackCoooldownResetTime = Time.time + attackCooldown;
             PlayerData.current.currentHP -= enemyLimb.attackDamage;
+            PlayAttackAnimation();
         }
+    }
+
+    void PlayAttackAnimation()
+    {
+        Debug.Log("play");
+        enemyLimb.StartAttack();
     }
 
     void GetDirNormalized()

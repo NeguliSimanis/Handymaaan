@@ -534,6 +534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemImage: {fileID: 21300000, guid: 14411dc369cd0f6438fcc6c7043bcfad, type: 3}
   attackDamage: 20
+  currentPlayerSlot: 0
   currentState: 0
   playerObject: {fileID: 1034815652}
 --- !u!4 &208541410
@@ -1962,6 +1963,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1976,6 +1978,18 @@ AudioListener:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58efdeb5b278014fb25267048c12433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1034815652}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -3533,6 +3547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemImage: {fileID: 21300000, guid: 14411dc369cd0f6438fcc6c7043bcfad, type: 3}
   attackDamage: 20
+  currentPlayerSlot: 0
   currentState: 3
   playerObject: {fileID: 1034815652}
 --- !u!4 &1021235742
@@ -5271,6 +5286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemImage: {fileID: 21300000, guid: 5b7c4672e0e0107449bfd59563ae5dfb, type: 3}
   attackDamage: 20
+  currentPlayerSlot: 0
   currentState: 0
   playerObject: {fileID: 1034815652}
 --- !u!61 &1475377010

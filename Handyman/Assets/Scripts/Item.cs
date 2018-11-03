@@ -24,7 +24,7 @@ public class Item : MonoBehaviour
     #region CURRENT STATE
     public enum ItemState { OnGround, InInventory, Equipped, EquippedByEnemy};
     public enum EquippedSlot { RightHand, LeftHand, Head};
-    private EquippedSlot currentPlayerSlot; // slot in which the item is equipped
+    public EquippedSlot currentPlayerSlot; // slot in which the item is equipped
     public ItemState currentState;
     private bool isAttacking = false;
     #endregion
@@ -114,7 +114,9 @@ public class Item : MonoBehaviour
     {
         // Rotate the object around its local Z axis. Rotation speed increases the more time has passed since attack started
         transform.Rotate(0, 0, Time.deltaTime * rotationSpeed * (1+ (Time.time - attackStartTime)));
-        DealDamageToEnemy();
+
+        if (currentState != ItemState.EquippedByEnemy)
+            DealDamageToEnemy();
     }
 
     private void DealDamageToEnemy()
@@ -174,7 +176,7 @@ public class Item : MonoBehaviour
 
     private void Update()
     {
-        if (currentState == ItemState.Equipped)
+        if (currentState == ItemState.Equipped || currentState == ItemState.EquippedByEnemy)
         {
             if (isAttacking)
             {

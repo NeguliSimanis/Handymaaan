@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
     void ManageAttackInput()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) || Input.GetKeyDown(KeyCode.E))
         {
             if (!isAttackCooldown)
             {
@@ -95,7 +95,12 @@ public class PlayerController : MonoBehaviour
 
     void UseAttackLimb()
     {
-        equippedLimbs[0].StartAttack();
+        foreach (Item limb in equippedLimbs)
+        {
+            if (limb.currentPlayerSlot == Item.EquippedSlot.LeftHand || limb.currentPlayerSlot == Item.EquippedSlot.RightHand)
+                limb.StartAttack();
+        }
+
     }
 
     void ManageMovementInput()
