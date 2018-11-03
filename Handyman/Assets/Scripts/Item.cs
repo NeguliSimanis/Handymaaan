@@ -62,10 +62,21 @@ public class Item : MonoBehaviour
         DisableChildren(false);
     }
 
-    public void AddToInventory()
+    /// <summary>
+    /// unequip item and put it into inventory
+    /// </summary>
+    public void UnEquipItem()
+    {
+        playerController.equippedLimbs.Remove(this);
+        AddToInventory(true);
+        Debug.Log("unequipping");
+    }
+
+    public void AddToInventory(bool isInInventory = false)
     {
         currentState = ItemState.InInventory;
-        playerController.AddItemToInventory(this);
+
+        playerController.AddItemToInventory(this, isInInventory);
 
         DisableChildren(true);
         

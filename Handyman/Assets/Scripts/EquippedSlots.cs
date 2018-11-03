@@ -12,6 +12,12 @@ public class EquippedSlots : MonoBehaviour
     [SerializeField]
     Button[] equippedSlots; // 0 - left arm, 1 - head, 2 - right arm
 
+    #region EQUIPPED ITEMS
+    Item headItem = null;
+    Item leftArmItem = null;
+    Item rightArmItem = null;
+    #endregion
+
     private void Start()
     {
         equippedSlots[0].onClick.AddListener(EquipLeftArm);
@@ -23,6 +29,13 @@ public class EquippedSlots : MonoBehaviour
     {
         if (areSlotsHighlighted)
         {
+            // Put currently equipped item in inventory
+            if (leftArmItem != null)
+            {
+                leftArmItem.UnEquipItem();
+            }
+
+            leftArmItem = itemToEquip;
             // shows equipped item image
             equippedSlots[0].gameObject.transform.GetChild(0).gameObject.SetActive(true);
             Image childImage = equippedSlots[0].gameObject.transform.GetChild(0).gameObject.GetComponent<Image>();
@@ -41,8 +54,17 @@ public class EquippedSlots : MonoBehaviour
 
     private void EquipHead()
     {
+
         if (areSlotsHighlighted)
         {
+            // Put currently equipped item in inventory
+            if (headItem != null)
+            {
+                headItem.UnEquipItem();
+            }
+
+            headItem = itemToEquip;
+
             // shows equipped item image
             equippedSlots[1].gameObject.transform.GetChild(0).gameObject.SetActive(true);
             Image childImage = equippedSlots[1].gameObject.transform.GetChild(0).gameObject.GetComponent<Image>();
@@ -61,8 +83,17 @@ public class EquippedSlots : MonoBehaviour
 
     private void EquipRightArm()
     {
+
         if (areSlotsHighlighted)
         {
+            // Put currently equipped item in inventory
+            if (rightArmItem != null)
+            {
+                rightArmItem.UnEquipItem();
+            }
+
+            rightArmItem = itemToEquip;
+
             // shows equipped item image
             equippedSlots[2].gameObject.transform.GetChild(0).gameObject.SetActive(true);
             Image childImage = equippedSlots[2].gameObject.transform.GetChild(0).gameObject.GetComponent<Image>();

@@ -136,9 +136,10 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector2(transform.position.x, transform.position.y) + dirNormalized * PlayerData.current.moveSpeed * Time.deltaTime;
     }
 
-    public void AddItemToInventory(Item itemToAdd)
+    public void AddItemToInventory(Item itemToAdd, bool isInInventory = false)
     {
-        inventory.Add(itemToAdd);
+        if (!isInInventory)
+            inventory.Add(itemToAdd);
 
         BackpackSlot slotToFill = playerBag.GetNextFreeSlot();
         slotToFill.FillSlot(itemToAdd);
