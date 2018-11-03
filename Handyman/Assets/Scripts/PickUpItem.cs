@@ -16,7 +16,7 @@ public class PickUpItem : MonoBehaviour
         if (col.gameObject.tag == playerTag)
         {
             canBePickedUp = true;
-            if (pickUpCommandReceived)
+            if (pickUpCommandReceived && item.currentState!= Item.ItemState.Equipped)
             {
                 item.AddToInventory();
             }
@@ -34,7 +34,7 @@ public class PickUpItem : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (canBePickedUp)
+        if (canBePickedUp && item.currentState != Item.ItemState.Equipped)
         {
             item.AddToInventory();
         }
@@ -46,7 +46,7 @@ public class PickUpItem : MonoBehaviour
 
     private void Update()
     {
-        if (canBePickedUp && Input.GetKeyDown(KeyCode.F))
+        if (canBePickedUp && Input.GetKeyDown(KeyCode.F) && item.currentState != Item.ItemState.Equipped)
         {
             item.AddToInventory();
         }

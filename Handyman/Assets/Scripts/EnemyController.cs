@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     #region STATE
     public bool isPlayerVisible = false;
     public bool isNearPlayer = false;
+    bool isDead = false;
     #endregion
 
     #region HEALTH
@@ -55,7 +56,19 @@ public class EnemyController : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject);
+        if (!isDead)
+        {
+            isDead = true;
+            DropItem();
+            PlayerData.current.currentScore++;
+            Destroy(gameObject);
+        }
+    }
+
+    void DropItem()
+    {
+        enemyLimb.transform.parent = null;
+        enemyLimb.currentState = Item.ItemState.OnGround;
     }
 
     private void Update()

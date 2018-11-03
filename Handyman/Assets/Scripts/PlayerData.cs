@@ -6,6 +6,10 @@ public class PlayerData
 {
     public static PlayerData current;
 
+    #region SCORE
+    public int currentScore = 0;
+    #endregion
+
     #region MOVEMENT
     public float moveSpeed = 3.2f;
     #endregion

@@ -96,6 +96,7 @@ public class Item : MonoBehaviour
     /// <param name="isAddingToInventory"></param>
     void DisableChildren(bool isAddingToInventory)
     {
+        Debug.Log("disabling children of " + gameObject.name);
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(!isAddingToInventory);
