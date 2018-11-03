@@ -27,4 +27,10 @@ public class PlayerData
     {
         currentHP = maxHP;
     }
+
+    public void Reset()
+    {
+        currentScore = 0;
+        currentHP = maxHP;
+    }
 }

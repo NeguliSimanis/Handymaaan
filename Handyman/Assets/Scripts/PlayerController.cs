@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     #region UI
     [SerializeField]
     GameObject inventoryPanel;
+    [SerializeField]
+    GameObject defeatWindow;
     #endregion
 
 
@@ -71,6 +73,7 @@ public class PlayerController : MonoBehaviour
     {
         if (PlayerData.current.currentHP <= 0)
         {
+            defeatWindow.SetActive(true);
             Destroy(gameObject);
         }
     }
@@ -110,10 +113,9 @@ public class PlayerController : MonoBehaviour
 
     void ThrowHead()
     {
-        foreach (Item limb in equippedLimbs)
+        if (equippedSlots.headItem != null)
         {
-            if (limb.currentPlayerSlot == Item.EquippedSlot.Head)
-                limb.Throw(isFacingRight);
+            equippedSlots.headItem.Throw(isFacingRight);
         }
     }
     

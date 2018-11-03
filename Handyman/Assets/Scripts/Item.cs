@@ -16,6 +16,13 @@ public class Item : MonoBehaviour
     Rigidbody2D thisRigidbody2D;
     float throwDuration = 0.4f;
     float throwEndTime;
+
+    bool isSelfDestructing = false;
+    float selfDestructTimer = 3.5f;
+    float selfDestructTime;
+
+    [SerializeField]
+    HeadDamageCollider headDamageCollider;
     #endregion
 
     #region ATTACK
@@ -62,9 +69,9 @@ public class Item : MonoBehaviour
 
     public void Throw(bool throwRight)
     {
-        Debug.Log("throwing boss");
         UnEquipItem(false);
         transform.parent = null;
+        currentState = ItemState.OnGround;    
         if (gameObject.GetComponent<Rigidbody2D>() != null)
         {
             thisRigidbody2D = gameObject.GetComponent<Rigidbody2D>();
@@ -110,6 +117,7 @@ public class Item : MonoBehaviour
         }
         if (slot == EquippedSlot.Head)
         {
+            headDamageCollider.Reset();
             transform.position = playerController.headPosition.position;
         }
         if (slot == EquippedSlot.LeftHand)
@@ -145,11 +153,19 @@ public class Item : MonoBehaviour
 
     public void AddToInventory(bool isInInventory = false)
     {
+        isSelfDestructing = false;
         if (currentState != Item.ItemState.EquippedByEnemy)
         {
             currentState = ItemState.InInventory;
 
             playerController.AddItemToInventory(this, isInInventory);
+
+            if (gameObject.GetComponent<Rigidbody2D>()!= null)
+            {
+                thisRigidbody2D = gameObject.GetComponent<Rigidbody2D>();
+                thisRigidbody2D.isKinematic = true;
+                thisRigidbody2D.velocity = Vector2.zero;
+            }
 
             DisableChildrenAndColliders(true);
         }
@@ -258,6 +274,18 @@ public class Item : MonoBehaviour
             Fly();
             CheckThrowEndTime();
         }
+        if (isSelfDestructing)
+        {
+            if (Time.time > selfDestructTime)
+            {
+                SelfDestruct();
+            }
+        }
+    }
+
+    public void SelfDestruct()
+    {
+        Destroy(gameObject);
     }
 
     private void CheckThrowEndTime()
@@ -265,6 +293,8 @@ public class Item : MonoBehaviour
         if (Time.time >throwEndTime)
         {
             isThrown = false;
+            isSelfDestructing = true;
+            selfDestructTime = Time.time + selfDestructTimer;
             gameObject.GetComponent<CircleCollider2D>().enabled = true;
         }
     }
