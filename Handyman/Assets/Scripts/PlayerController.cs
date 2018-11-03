@@ -48,6 +48,15 @@ public class PlayerController : MonoBehaviour
         ManageAttackInput();
         ResetAttackCooldown();
         ManageKeyInput();
+        CheckIfDead();
+    }
+
+    void CheckIfDead()
+    {
+        if (PlayerData.current.currentHP <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void ManageKeyInput()

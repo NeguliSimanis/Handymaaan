@@ -14,14 +14,24 @@ public class EnemyController : MonoBehaviour
     public bool isNearPlayer = false;
     #endregion
 
-    #region Properties
+    #region HEALTH
     [SerializeField]
     int maxHP;
     int currentHP;
     #endregion
 
-    #region MOVEMENT
+    #region LIMBS
+    public Item enemyLimb;
+    #endregion
 
+    #region ATTACK
+    bool isAttackCooldown = false;
+    [SerializeField]
+    float attackCooldown;
+    float attackCoooldownResetTime;
+    #endregion
+
+    #region MOVEMENT
     [SerializeField]
     float moveSpeed;
     Vector2 dirNormalized;
@@ -35,8 +45,8 @@ public class EnemyController : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        Debug.Log("take damage");
         currentHP -= amount;
+        Debug.Log(currentHP);
         if (currentHP <= 0)
         {
             Die();
@@ -58,6 +68,29 @@ public class EnemyController : MonoBehaviour
                 GetDirNormalized();
                 FollowPlayer();
             }
+            else
+            {
+                ManageAttackingPlayer();
+            }
+        }
+        ResetAttackCooldown();
+    }
+
+    void ResetAttackCooldown()
+    {
+        if (Time.time > attackCoooldownResetTime)
+        {
+            isAttackCooldown = false;
+        }
+    }
+    void ManageAttackingPlayer()
+    {
+        if (!isAttackCooldown)
+        {
+            Debug.Log("ATTACKING PLAYER " + Time.time);
+            isAttackCooldown = true;
+            attackCoooldownResetTime = Time.time + attackCooldown;
+            PlayerData.current.currentHP -= enemyLimb.attackDamage;
         }
     }
 

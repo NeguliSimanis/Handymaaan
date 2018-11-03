@@ -43,4 +43,12 @@ public class PickUpItem : MonoBehaviour
             pickUpCommandReceived = true;
         }
     }
+
+    private void Update()
+    {
+        if (canBePickedUp && Input.GetKeyDown(KeyCode.F))
+        {
+            item.AddToInventory();
+        }
+    }
 }

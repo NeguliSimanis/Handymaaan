@@ -11,17 +11,21 @@ public class Item : MonoBehaviour
     #endregion
 
     #region ATTACK
-    [SerializeField] int attackDamage;
+    bool canDamageEnemy = false;
+    bool hasDealtDamageThisTime = false;
+    EnemyController currentEnemy;
+
+    public int attackDamage;
     float attackDuration = 0.4f;
     float attackCooldownResetTime;
     float attackStartTime;
     #endregion
 
     #region CURRENT STATE
-    public enum ItemState { OnGround, InInventory, Equipped};
+    public enum ItemState { OnGround, InInventory, Equipped, EquippedByEnemy};
     public enum EquippedSlot { RightHand, LeftHand, Head};
     private EquippedSlot currentPlayerSlot; // slot in which the item is equipped
-    private ItemState currentState;
+    public ItemState currentState;
     private bool isAttacking = false;
     #endregion
 
@@ -76,12 +80,14 @@ public class Item : MonoBehaviour
 
     public void AddToInventory(bool isInInventory = false)
     {
-        currentState = ItemState.InInventory;
+        if (currentState != Item.ItemState.EquippedByEnemy)
+        {
+            currentState = ItemState.InInventory;
 
-        playerController.AddItemToInventory(this, isInInventory);
+            playerController.AddItemToInventory(this, isInInventory);
 
-        DisableChildren(true);
-        
+            DisableChildren(true);
+        }
     }
 
     /// <summary>
@@ -107,14 +113,51 @@ public class Item : MonoBehaviour
     {
         // Rotate the object around its local Z axis. Rotation speed increases the more time has passed since attack started
         transform.Rotate(0, 0, Time.deltaTime * rotationSpeed * (1+ (Time.time - attackStartTime)));
+        DealDamageToEnemy();
+    }
+
+    private void DealDamageToEnemy()
+    {
+        if (!hasDealtDamageThisTime && canDamageEnemy)
+        {
+            hasDealtDamageThisTime = true;
+            currentEnemy.TakeDamage(attackDamage);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("collision");
-        if (isAttacking && collision.gameObject.tag == "Enemy")
+        if (isAttacking)
         {
-            collision.gameObject.GetComponent<EnemyController>().TakeDamage(attackDamage);
+            if (collision.gameObject.tag == "Enemy")
+            {
+                canDamageEnemy = true;
+                currentEnemy = collision.gameObject.GetComponent<EnemyController>();
+            }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (isAttacking)
+        {
+            if (collision.gameObject.tag == "Enemy")
+            {
+                canDamageEnemy = true;
+                currentEnemy = collision.gameObject.GetComponent<EnemyController>();
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (isAttacking)
+        {
+            if (collision.gameObject.tag == "Enemy")
+            {
+                if (collision.gameObject.GetComponent<EnemyController>() == currentEnemy)
+                    canDamageEnemy = false;
+            }
         }
     }
 
@@ -123,16 +166,20 @@ public class Item : MonoBehaviour
         if (Time.time > attackCooldownResetTime)
         {
             isAttacking = false;
+            hasDealtDamageThisTime = false;
         }
     }
+    
 
     private void Update()
     {
-        if (isAttacking)
+        if (currentState == ItemState.Equipped)
         {
-            Attack();
-            ResetAttackCooldown();
+            if (isAttacking)
+            {
+                Attack();
+                ResetAttackCooldown();
+            }
         }
-  
     }
 }
