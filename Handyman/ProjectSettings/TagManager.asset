@@ -17,8 +17,8 @@ TagManager:
   - 
   - Ceiling
   - Limbs
-  - 
-  - 
+  - MoonBackground
+  - MountainsBackground
   - 
   - 
   - 
@@ -42,6 +42,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: MountainsBackground
+    uniqueID: 3343024929
     locked: 0
   - name: Background
     uniqueID: 1898761875

@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //[SerializeField]
-   // Rigidbody2D thisRigidBody;
-
     #region ITEMS
     [SerializeField]
     PlayerBag playerBag;
@@ -24,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
     #region MOVEMENT
     public bool isFacingRight = true;
-    private bool isWalking = false;
+    public bool isWalking = false;
     private Vector2 targetPosition;
     private Vector2 dirNormalized;
     #endregion
@@ -41,16 +38,30 @@ public class PlayerController : MonoBehaviour
     GameObject defeatWindow;
     #endregion
 
+    #region AUDIO
+    [Header("AUDIO")]
+    [SerializeField]
+    AudioSource audioSource;
+    [SerializeField]
+    AudioClip throwHeadSFX;
+    #endregion
+
+    #region INTRO
+    [Header("Game intro")]
+    [SerializeField]
+    Rigidbody2D[] introLimbs;
+    bool isIntroPlayed = false;
+    #endregion
 
     private void Start()
     {
         if (PlayerData.current == null)
         {
             PlayerData.current = new PlayerData();
-        }   
+        }
     }
 
-    void Update ()
+    void Update()
     {
         ManageMovementInput();
         ManageAttackInput();
@@ -61,7 +72,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void CheckWherePlayerIsFacing() 
+    void CheckWherePlayerIsFacing()
     {
         if (isFacingRight && Input.GetAxisRaw("Horizontal") < 0)
         {
@@ -121,10 +132,11 @@ public class PlayerController : MonoBehaviour
     {
         if (equippedSlots.headItem != null)
         {
+            audioSource.PlayOneShot(throwHeadSFX);
             equippedSlots.headItem.Throw(isFacingRight);
         }
     }
-    
+
     void Attack()
     {
         isAttackCooldown = true;
@@ -142,10 +154,30 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    void PlayIntro()
+    {
+        isIntroPlayed = true;
+        foreach (Rigidbody2D limb in introLimbs)
+        {
+            limb.isKinematic = false;
+        }
+    }
+
     void ManageMovementInput()
     {
-        
         transform.position = new Vector2(transform.position.x, transform.position.y) + new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * PlayerData.current.moveSpeed * Time.deltaTime;
+        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        {
+            if (!isIntroPlayed)
+            {
+                PlayIntro();
+            }
+            isWalking = true;
+        }
+        else
+        {
+            isWalking = false;
+        }
         /*if (Input.GetMouseButton(0))
          {
              GetTargetPositionAndDirection();

@@ -12,8 +12,11 @@ public class HeadDamageCollider : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy" && !hasDealtDamage)
         {
-            hasDealtDamage = true;
-            collision.gameObject.GetComponent<EnemyController>().TakeDamage((int)(item.attackDamage * 1.5f));      
+            if (item.isThrown || item.isSelfDestructing)
+            {
+                hasDealtDamage = true;
+                collision.gameObject.GetComponent<EnemyController>().TakeDamage((int)(item.attackDamage * 2.0f));
+            }
         }
     }
 

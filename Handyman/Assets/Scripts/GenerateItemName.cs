@@ -78,7 +78,6 @@ public class GenerateItemName
                 name = name + " " + lastNames[Random.Range(0, lastNames.Length - 1)];
             }
         }
-        Debug.Log(name);
         return name;
     }
 

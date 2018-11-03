@@ -10,7 +10,6 @@ public class PickUpItem : MonoBehaviour
     bool canBePickedUp = false; // can pick up item if player is in the collider area;
     bool pickUpCommandReceived = false; // player picked on the item but was outside of the area
 
-
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == playerTag)

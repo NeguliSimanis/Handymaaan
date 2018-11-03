@@ -7,8 +7,16 @@ public class Item : MonoBehaviour
 {
     #region PROPERTIES
     public string itemName;
-    float rotationSpeed = 290f;
+    float rotationSpeed = 390f;
     public Sprite itemImage;
+    [SerializeField]
+    EnemyController parentEnemyController;
+    #endregion
+
+    #region MOVEMENT
+    [SerializeField]
+    Transform legRotationAxis;
+    float legRotationSpeed = 330f;
     #endregion
 
     #region THROWING
@@ -18,7 +26,7 @@ public class Item : MonoBehaviour
     float throwDuration = 0.4f;
     float throwEndTime;
 
-    bool isSelfDestructing = false;
+    public bool isSelfDestructing = false;
     float selfDestructTimer = 3.5f;
     float selfDestructTime;
 
@@ -45,7 +53,7 @@ public class Item : MonoBehaviour
     public ItemState currentState;
     private bool isAttacking = false;
 
-    bool isThrown = false;
+    public bool isThrown = false;
     bool isThrownRight = true;
     #endregion
 
@@ -63,11 +71,16 @@ public class Item : MonoBehaviour
         }
 
         playerController = playerObject.GetComponent<PlayerController>();
-        if (currentState == ItemState.CarriedByEnemy)
+        if (currentState == ItemState.EquippedByEnemy)
         {
-            DisableChildrenAndColliders(true);
+            DisablePhysics();
         }
         itemName = GenerateItemName.GenerateLimbName(originalLimbType);
+    }
+
+    void DisablePhysics()
+    {
+        gameObject.GetComponent<CircleCollider2D>().enabled = false;    
     }
 
     public void Throw(bool throwRight)
@@ -196,7 +209,6 @@ public class Item : MonoBehaviour
     /// <param name="isAddingToInventory"></param>
     void DisableChildrenAndColliders(bool isAddingToInventory)
     {
-        Debug.Log("disabling children of " + gameObject.name);
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(!isAddingToInventory);
@@ -211,15 +223,20 @@ public class Item : MonoBehaviour
     public void StartAttack()
     {
         isAttacking = true;
-        thisRigidbody2D.freezeRotation = false;
+        if (thisRigidbody2D != null)
+        {
+            thisRigidbody2D.freezeRotation = false;
+        }
         attackCooldownResetTime = Time.time + attackDuration;
         attackStartTime = Time.time;
+       
     }
 
     private void Attack()
     {
         // Rotate the object around its local Z axis. Rotation speed increases the more time has passed since attack started
-        transform.Rotate(0, 0, Time.deltaTime * rotationSpeed * (1+ (Time.time - attackStartTime)));
+        //transform.Rotate(0, 0, Time.deltaTime * rotationSpeed * (1+ (Time.time - attackStartTime)));
+        transform.RotateAround(legRotationAxis.position, new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime * (1 + (Time.time - attackStartTime)));
 
         if (currentState != ItemState.EquippedByEnemy)
             DealDamageToEnemy();
@@ -290,6 +307,17 @@ public class Item : MonoBehaviour
                 ResetAttackCooldown();
             }
         }
+        if (currentState == ItemState.Equipped && playerController.isWalking)
+        {
+            SwingLeg();
+        }
+        if (currentState == ItemState.EquippedByEnemy)
+        {
+            if (parentEnemyController.isPlayerVisible && !parentEnemyController.isNearPlayer)
+            {
+                SwingLeg();
+            }
+        }
         if (isThrown)
         {
             Fly();
@@ -303,6 +331,19 @@ public class Item : MonoBehaviour
             }
         }
     }
+
+    private void SwingLeg()
+    {
+        if ((currentPlayerSlot == EquippedSlot.RightLeg || currentPlayerSlot == EquippedSlot.LeftLeg) ||
+            (originalLimbType == EquippedSlot.RightLeg || originalLimbType == EquippedSlot.LeftLeg))
+        {
+            //transform.Rotate(0, 0, Time.deltaTime * rotationSpeed);
+            //transform.RotateAround(Vector3.zero, Vector3.up, 20 * Time.deltaTime);
+            transform.RotateAround(legRotationAxis.position, new Vector3(0, 0, 1),legRotationSpeed  *Time.deltaTime);
+        }
+    }
+
+
 
     public void SelfDestruct()
     {

@@ -11,6 +11,21 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1134800728691556}
   m_IsPrefabAsset: 1
+--- !u!1 &1020599588433376
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4308113933165134}
+  m_Layer: 0
+  m_Name: LegRotationAxis (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1092598003613052
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,6 +95,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4308113933165134
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1020599588433376}
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.142, y: 0.23000002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4881813146812950}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4430326631606366
 Transform:
   m_ObjectHideFlags: 1
@@ -112,13 +140,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1134800728691556}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.124, y: -3.32, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.3719163, y: -1.5764973, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4730697298633810}
   - {fileID: 4967095328299004}
   - {fileID: 4430326631606366}
+  - {fileID: 4308113933165134}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -282,12 +311,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: 
   itemImage: {fileID: 21300000, guid: 0a5ed92726877774f9c12a9082a20b5a, type: 3}
+  legRotationAxis: {fileID: 4308113933165134}
   throwSpeed: 4.5
+  isSelfDestructing: 0
   headDamageCollider: {fileID: 114137042551364224}
   attackDamage: 10
   currentPlayerSlot: 0
   originalLimbType: 4
   currentState: 0
+  isThrown: 0
   playerObject: {fileID: 0}
 --- !u!212 &212642963222156390
 SpriteRenderer:
