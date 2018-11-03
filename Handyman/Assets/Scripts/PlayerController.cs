@@ -24,6 +24,10 @@ public class PlayerController : MonoBehaviour
     public bool isWalking = false;
     private Vector2 targetPosition;
     private Vector2 dirNormalized;
+    [SerializeField]
+    Transform playerUpperBound;
+    [SerializeField]
+    Transform playerLowerBound;
     #endregion
 
     #region ATTACK
@@ -165,7 +169,21 @@ public class PlayerController : MonoBehaviour
 
     void ManageMovementInput()
     {
-        transform.position = new Vector2(transform.position.x, transform.position.y) + new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * PlayerData.current.moveSpeed * Time.deltaTime;
+
+        float verticalMovementMultiplier = Input.GetAxisRaw("Vertical");
+
+        // don't allow player trespass upper border of level
+        if (transform.position.y >= playerUpperBound.position.y && verticalMovementMultiplier > 0)
+        {
+            verticalMovementMultiplier = 0;
+        }
+
+        // don't allow player trespass lower border of level
+        if (transform.position.y <= playerLowerBound.position.y && verticalMovementMultiplier < 0)
+        {
+            verticalMovementMultiplier = 0;
+        }
+        transform.position = new Vector2(transform.position.x, transform.position.y) + new Vector2(Input.GetAxisRaw("Horizontal"), verticalMovementMultiplier) * PlayerData.current.moveSpeed * Time.deltaTime;
         if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
         {
             if (!isIntroPlayed)
