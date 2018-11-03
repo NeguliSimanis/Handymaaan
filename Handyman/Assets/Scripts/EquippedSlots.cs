@@ -39,7 +39,7 @@ public class EquippedSlots : MonoBehaviour
                 leftLegItem.UnEquipItem();
             }
 
-            leftArmItem = itemToEquip;
+            leftLegItem = itemToEquip;
             // shows equipped item image
             equippedSlots[3].gameObject.transform.GetChild(0).gameObject.SetActive(true);
             Image childImage = equippedSlots[3].gameObject.transform.GetChild(0).gameObject.GetComponent<Image>();
@@ -66,17 +66,17 @@ public class EquippedSlots : MonoBehaviour
                 rightLegItem.UnEquipItem();
             }
 
-            leftArmItem = itemToEquip;
+            rightLegItem = itemToEquip;
             // shows equipped item image
-            equippedSlots[0].gameObject.transform.GetChild(0).gameObject.SetActive(true);
-            Image childImage = equippedSlots[0].gameObject.transform.GetChild(0).gameObject.GetComponent<Image>();
+            equippedSlots[4].gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            Image childImage = equippedSlots[4].gameObject.transform.GetChild(0).gameObject.GetComponent<Image>();
             childImage.sprite = itemToEquip.itemImage;
             childImage.preserveAspect = true;
 
             // turns off highlight
             HideEquippableSlots();
 
-            EquipItem(equippedSlots[0].gameObject.GetComponent<SlotType>().slotType);
+            EquipItem(equippedSlots[4].gameObject.GetComponent<SlotType>().slotType);
 
             //HIDE ITEM FROM BACKPACK
             RemoveFromBackpack();

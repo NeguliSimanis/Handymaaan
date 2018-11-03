@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region MOVEMENT
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
     private bool isWalking = false;
     private Vector2 targetPosition;
     private Vector2 dirNormalized;

@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
     #region PROPERTIES
-    string itemName;
+    public string itemName;
     float rotationSpeed = 290f;
     public Sprite itemImage;
     #endregion
@@ -40,6 +41,7 @@ public class Item : MonoBehaviour
     public enum ItemState { OnGround, InInventory, Equipped, EquippedByEnemy, CarriedByEnemy};
     public enum EquippedSlot { RightHand, LeftHand, Head, LeftLeg, RightLeg};
     public EquippedSlot currentPlayerSlot; // slot in which the item is equipped
+    public EquippedSlot originalLimbType;  // the original type of limb, because head can be equipped in place of arm, etc.
     public ItemState currentState;
     private bool isAttacking = false;
 
@@ -65,6 +67,7 @@ public class Item : MonoBehaviour
         {
             DisableChildrenAndColliders(true);
         }
+        itemName = GenerateItemName.GenerateLimbName(originalLimbType);
     }
 
     public void Throw(bool throwRight)
@@ -76,6 +79,7 @@ public class Item : MonoBehaviour
         {
             thisRigidbody2D = gameObject.GetComponent<Rigidbody2D>();
             thisRigidbody2D.isKinematic = false;
+            thisRigidbody2D.freezeRotation = false;
 
             //gameObject.GetComponent<CircleCollider2D>().enabled = true;
 
@@ -124,12 +128,27 @@ public class Item : MonoBehaviour
         {
             transform.position = playerController.leftLimbPosition.position;
         }
+        if (slot == EquippedSlot.LeftLeg)
+        {
+            transform.position = playerController.leftLegPosition.position;
+        }
+        if (slot == EquippedSlot.RightLeg)
+        {
+            transform.position = playerController.rightLegPosition.position;
+        }
+        transform.localEulerAngles = Vector3.zero;
+
+        if (!playerController.isFacingRight)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
 
         if (gameObject.GetComponent<Rigidbody2D>() != null)
         {
             Rigidbody2D rigidbody = gameObject.GetComponent<Rigidbody2D>();
             rigidbody.isKinematic = true;
-            rigidbody.velocity = Vector2.zero;
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.freezeRotation = true;
             rigidbody.rotation = 0f;
             gameObject.GetComponent<CircleCollider2D>().enabled = false;
         }
@@ -181,6 +200,7 @@ public class Item : MonoBehaviour
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(!isAddingToInventory);
+       
         }
         if (gameObject.GetComponent<CircleCollider2D>() != null)
         {
@@ -191,6 +211,7 @@ public class Item : MonoBehaviour
     public void StartAttack()
     {
         isAttacking = true;
+        thisRigidbody2D.freezeRotation = false;
         attackCooldownResetTime = Time.time + attackDuration;
         attackStartTime = Time.time;
     }

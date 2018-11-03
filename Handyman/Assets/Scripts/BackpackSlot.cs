@@ -61,6 +61,13 @@ public class BackpackSlot : MonoBehaviour
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(true);
+            // set item name
+            if (currentChildID == 1)
+            {
+                child.gameObject.GetComponent<Text>().text = itemToAdd.itemName;
+            }
+
+
             // set item image
             if (currentChildID==0)
             {
