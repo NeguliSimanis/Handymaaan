@@ -22,7 +22,7 @@ public class Item : MonoBehaviour
     #endregion
 
     #region CURRENT STATE
-    public enum ItemState { OnGround, InInventory, Equipped, EquippedByEnemy};
+    public enum ItemState { OnGround, InInventory, Equipped, EquippedByEnemy, CarriedByEnemy};
     public enum EquippedSlot { RightHand, LeftHand, Head};
     public EquippedSlot currentPlayerSlot; // slot in which the item is equipped
     public ItemState currentState;
@@ -37,7 +37,16 @@ public class Item : MonoBehaviour
 
     private void Start()
     {
+        if (playerObject == null)
+        {
+            playerObject = GameObject.FindGameObjectWithTag("Player");
+        }
+
         playerController = playerObject.GetComponent<PlayerController>();
+        if (currentState == ItemState.CarriedByEnemy)
+        {
+            DisableChildren(true);
+        }
     }
 
 
@@ -91,7 +100,7 @@ public class Item : MonoBehaviour
     }
 
     /// <summary>
-    /// Called when you add/remove item from inventory
+    /// Called when you add/remove item from inventory and other cases when you need to disable object functionality
     /// </summary>
     /// <param name="isAddingToInventory"></param>
     void DisableChildren(bool isAddingToInventory)

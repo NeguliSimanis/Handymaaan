@@ -11,7 +11,7 @@ public class PlayerData
     #endregion
 
     #region MOVEMENT
-    public float moveSpeed = 3.2f;
+    public float moveSpeed = 3.7f;
     #endregion
 
     #region HEALTH

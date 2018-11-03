@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region MOVEMENT
+    private bool isFacingRight = true;
     private bool isWalking = false;
     private Vector2 targetPosition;
     private Vector2 dirNormalized;
@@ -49,6 +50,21 @@ public class PlayerController : MonoBehaviour
         ResetAttackCooldown();
         ManageKeyInput();
         CheckIfDead();
+        CheckWherePlayerIsFacing();
+    }
+
+    void CheckWherePlayerIsFacing() 
+    {
+        if (isFacingRight && Input.GetAxisRaw("Horizontal") < 0)
+        {
+            isFacingRight = false;
+            gameObject.transform.localScale = new Vector2(-1f, 1f);
+        }
+        else if (!isFacingRight && Input.GetAxisRaw("Horizontal") > 0)
+        {
+            isFacingRight = true;
+            gameObject.transform.localScale = new Vector2(1f, 1f);
+        }
     }
 
     void CheckIfDead()
@@ -77,12 +93,18 @@ public class PlayerController : MonoBehaviour
 
     void ManageAttackInput()
     {
+        // ARM ATTACK
         if (Input.GetMouseButton(1) || Input.GetKeyDown(KeyCode.E))
         {
             if (!isAttackCooldown)
             {
                 Attack();
             }
+        }
+        // HEAD THROW
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Debug.Log("HEADBUTT");
         }
     }
 

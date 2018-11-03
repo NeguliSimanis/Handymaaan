@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     #endregion
 
     #region STATE
+    private bool isFacingRight = true;
     public bool isPlayerVisible = false;
     public bool isNearPlayer = false;
     bool isDead = false;
@@ -23,6 +24,8 @@ public class EnemyController : MonoBehaviour
 
     #region LIMBS
     public Item enemyLimb;
+    [SerializeField]
+    GameObject itemToDrop;
     #endregion
 
     #region ATTACK
@@ -67,8 +70,11 @@ public class EnemyController : MonoBehaviour
 
     void DropItem()
     {
-        enemyLimb.transform.parent = null;
-        enemyLimb.currentState = Item.ItemState.OnGround;
+       // enemyLimb.transform.parent = null;
+       // enemyLimb.currentState = Item.ItemState.OnGround;
+
+        GameObject drop = Instantiate(itemToDrop, transform);
+        drop.transform.parent = null;
     }
 
     private void Update()
@@ -121,6 +127,21 @@ public class EnemyController : MonoBehaviour
 
     private void FollowPlayer()
     {
+        CheckWhereEnemyIsFacing();
         transform.position = new Vector2(transform.position.x, transform.position.y) + dirNormalized * moveSpeed * Time.deltaTime;
+    }
+
+    void CheckWhereEnemyIsFacing()
+    {
+        if (isFacingRight && dirNormalized.x < 0)
+        {
+            isFacingRight = false;
+            gameObject.transform.localScale = new Vector2(-1f, 1f);
+        }
+        else if (!isFacingRight && dirNormalized.x > 0)
+        {
+            isFacingRight = true;
+            gameObject.transform.localScale = new Vector2(1f, 1f);
+        }
     }
 }
