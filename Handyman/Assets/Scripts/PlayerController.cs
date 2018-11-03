@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
     #region ITEMS
     [SerializeField]
     PlayerBag playerBag;
-    [SerializeField]
-    EquippedSlots equippedSlots;
+
+    public EquippedSlots equippedSlots;
 
     public List<Item> equippedLimbs = new List<Item>();
     public List<Item> inventory = new List<Item>();
@@ -104,10 +104,19 @@ public class PlayerController : MonoBehaviour
         // HEAD THROW
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Debug.Log("HEADBUTT");
+            ThrowHead();
         }
     }
 
+    void ThrowHead()
+    {
+        foreach (Item limb in equippedLimbs)
+        {
+            if (limb.currentPlayerSlot == Item.EquippedSlot.Head)
+                limb.Throw(isFacingRight);
+        }
+    }
+    
     void Attack()
     {
         isAttackCooldown = true;

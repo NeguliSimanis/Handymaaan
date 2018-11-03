@@ -10,6 +10,14 @@ public class Item : MonoBehaviour
     public Sprite itemImage;
     #endregion
 
+    #region THROWING
+    [SerializeField]
+    float throwSpeed;
+    Rigidbody2D thisRigidbody2D;
+    float throwDuration = 0.4f;
+    float throwEndTime;
+    #endregion
+
     #region ATTACK
     bool canDamageEnemy = false;
     bool hasDealtDamageThisTime = false;
@@ -27,6 +35,9 @@ public class Item : MonoBehaviour
     public EquippedSlot currentPlayerSlot; // slot in which the item is equipped
     public ItemState currentState;
     private bool isAttacking = false;
+
+    bool isThrown = false;
+    bool isThrownRight = true;
     #endregion
 
     #region PLAYER
@@ -45,11 +56,43 @@ public class Item : MonoBehaviour
         playerController = playerObject.GetComponent<PlayerController>();
         if (currentState == ItemState.CarriedByEnemy)
         {
-            DisableChildren(true);
+            DisableChildrenAndColliders(true);
+        }
+    }
+
+    public void Throw(bool throwRight)
+    {
+        Debug.Log("throwing boss");
+        UnEquipItem(false);
+        transform.parent = null;
+        if (gameObject.GetComponent<Rigidbody2D>() != null)
+        {
+            thisRigidbody2D = gameObject.GetComponent<Rigidbody2D>();
+            thisRigidbody2D.isKinematic = false;
+
+            //gameObject.GetComponent<CircleCollider2D>().enabled = true;
+
+            isThrown = true;
+            throwEndTime = Time.time + throwDuration;
+            if (throwRight)
+            {
+                isThrownRight = true;
+                //rigidbody.AddForce(Vector2.right * throwSpeed);
+                //rigidbody.AddForce(Vector2.right * throwSpeed);
+            }
+            else
+            {
+                isThrownRight = false;
+               // rigidbody.AddForce(Vector2.right * -1 * throwSpeed);
+            }
         }
     }
 
 
+    private void Fly()
+    {
+        thisRigidbody2D.AddForce(new Vector2(5,5.5f) * throwSpeed);
+    }
     public void EquipItem(EquippedSlot slot)
     {
 
@@ -63,7 +106,7 @@ public class Item : MonoBehaviour
         
         if (slot == EquippedSlot.RightHand)
         {
-            transform.position = playerController.rightLimbPosition.position; 
+            transform.position = playerController.rightLimbPosition.position;          
         }
         if (slot == EquippedSlot.Head)
         {
@@ -74,17 +117,30 @@ public class Item : MonoBehaviour
             transform.position = playerController.leftLimbPosition.position;
         }
 
-        DisableChildren(false);
+        if (gameObject.GetComponent<Rigidbody2D>() != null)
+        {
+            Rigidbody2D rigidbody = gameObject.GetComponent<Rigidbody2D>();
+            rigidbody.isKinematic = true;
+            rigidbody.velocity = Vector2.zero;
+            rigidbody.rotation = 0f;
+            gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        }
+        DisableChildrenAndColliders(false);
     }
 
     /// <summary>
-    /// unequip item and put it into inventory
+    /// unequip item and put it into inventory or remove it completely from player
     /// </summary>
-    public void UnEquipItem()
+    public void UnEquipItem(bool putInInventory = true)
     {
         playerController.equippedLimbs.Remove(this);
-        AddToInventory(true);
-        Debug.Log("unequipping");
+        if (putInInventory)
+            AddToInventory(true);
+        // called when you throw a head - unequip the item completely
+        else
+        {
+            playerController.equippedSlots.UnequipHead();
+        }
     }
 
     public void AddToInventory(bool isInInventory = false)
@@ -95,7 +151,7 @@ public class Item : MonoBehaviour
 
             playerController.AddItemToInventory(this, isInInventory);
 
-            DisableChildren(true);
+            DisableChildrenAndColliders(true);
         }
     }
 
@@ -103,12 +159,16 @@ public class Item : MonoBehaviour
     /// Called when you add/remove item from inventory and other cases when you need to disable object functionality
     /// </summary>
     /// <param name="isAddingToInventory"></param>
-    void DisableChildren(bool isAddingToInventory)
+    void DisableChildrenAndColliders(bool isAddingToInventory)
     {
         Debug.Log("disabling children of " + gameObject.name);
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(!isAddingToInventory);
+        }
+        if (gameObject.GetComponent<CircleCollider2D>() != null)
+        {
+            gameObject.GetComponent<CircleCollider2D>().enabled = false;
         }
     }
 
@@ -192,6 +252,20 @@ public class Item : MonoBehaviour
                 Attack();
                 ResetAttackCooldown();
             }
+        }
+        if (isThrown)
+        {
+            Fly();
+            CheckThrowEndTime();
+        }
+    }
+
+    private void CheckThrowEndTime()
+    {
+        if (Time.time >throwEndTime)
+        {
+            isThrown = false;
+            gameObject.GetComponent<CircleCollider2D>().enabled = true;
         }
     }
 }

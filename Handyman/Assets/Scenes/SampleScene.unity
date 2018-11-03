@@ -940,6 +940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemImage: {fileID: 21300000, guid: 14411dc369cd0f6438fcc6c7043bcfad, type: 3}
+  throwSpeed: 5
   attackDamage: 20
   currentPlayerSlot: 0
   currentState: 0
@@ -1089,11 +1090,6 @@ MonoBehaviour:
   playerBag: {fileID: 0}
   isFilled: 0
   slotID: 4
---- !u!4 &220601827 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4614626893849004, guid: 2f679c8f36c6b454d9a13716040fb11e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1098178796}
 --- !u!1 &227860897
 GameObject:
   m_ObjectHideFlags: 0
@@ -4192,8 +4188,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1000029602}
   - component: {fileID: 1000029603}
-  m_Layer: 0
-  m_Name: GameObject
+  m_Layer: 8
+  m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4668,6 +4664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemImage: {fileID: 21300000, guid: 14411dc369cd0f6438fcc6c7043bcfad, type: 3}
+  throwSpeed: 5
   attackDamage: 20
   currentPlayerSlot: 0
   currentState: 3
@@ -4949,7 +4946,7 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1034815652}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -4960,7 +4957,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &1034815658
 MonoBehaviour:
@@ -5096,19 +5093,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 2086626190}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4614626893849004, guid: 2f679c8f36c6b454d9a13716040fb11e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.5300007
+      value: -4.752084
       objectReference: {fileID: 0}
     - target: {fileID: 4614626893849004, guid: 2f679c8f36c6b454d9a13716040fb11e, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.046497345
+      value: -1.7435026
       objectReference: {fileID: 0}
     - target: {fileID: 4614626893849004, guid: 2f679c8f36c6b454d9a13716040fb11e, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.109375
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4614626893849004, guid: 2f679c8f36c6b454d9a13716040fb11e, type: 2}
       propertyPath: m_LocalRotation.x
@@ -5128,16 +5125,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4614626893849004, guid: 2f679c8f36c6b454d9a13716040fb11e, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 114379243407450464, guid: 2f679c8f36c6b454d9a13716040fb11e,
         type: 2}
       propertyPath: playerObject
       value: 
       objectReference: {fileID: 1034815652}
-    - target: {fileID: 1102259385586440, guid: 2f679c8f36c6b454d9a13716040fb11e, type: 2}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 50641469467252170, guid: 2f679c8f36c6b454d9a13716040fb11e,
+        type: 2}
+      propertyPath: m_Mass
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f679c8f36c6b454d9a13716040fb11e, type: 2}
@@ -6599,8 +6597,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1357049515}
   - component: {fileID: 1357049516}
-  m_Layer: 0
-  m_Name: GameObject
+  m_Layer: 8
+  m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7093,6 +7091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemImage: {fileID: 21300000, guid: 5b7c4672e0e0107449bfd59563ae5dfb, type: 3}
+  throwSpeed: 5
   attackDamage: 20
   currentPlayerSlot: 0
   currentState: 0
@@ -7591,8 +7590,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1629963470}
   - component: {fileID: 1629963471}
-  m_Layer: 0
-  m_Name: GameObject
+  m_Layer: 8
+  m_Name: Ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9779,7 +9778,6 @@ Transform:
   - {fileID: 287915125}
   - {fileID: 812079631}
   - {fileID: 1021235742}
-  - {fileID: 220601827}
   m_Father: {fileID: 1971161272}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -13,7 +13,7 @@ public class EquippedSlots : MonoBehaviour
     Button[] equippedSlots; // 0 - left arm, 1 - head, 2 - right arm
 
     #region EQUIPPED ITEMS
-    Item headItem = null;
+    public Item headItem = null;
     Item leftArmItem = null;
     Item rightArmItem = null;
     #endregion
@@ -50,6 +50,12 @@ public class EquippedSlots : MonoBehaviour
             //HIDE ITEM FROM BACKPACK
             RemoveFromBackpack();
         }
+    }
+
+    public void UnequipHead()
+    {
+        headItem = null;
+        equippedSlots[1].gameObject.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     private void EquipHead()
