@@ -89,7 +89,7 @@ public class LevelGeneration : MonoBehaviour {
     void GenerateRightSegment()
     {
         GameObject levelSegment = Instantiate(defaultLevelSegment[0], null);
-        levelSegment.transform.position = new Vector3 (rightGenerationPoint.transform.position.x, transform.position.y, 0f);
+        levelSegment.transform.position = new Vector3 (rightGenerationPoint.transform.position.x - 0.38528f, transform.position.y, 0f);
 
        /* // generate mountain
         GameObject mountainSegment = Instantiate(defaultMountainSegment[0], null);
