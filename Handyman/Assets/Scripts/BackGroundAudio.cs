@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BackGroundAudio : MonoBehaviour {
 
+    [SerializeField]
+    AudioSource audioSource;
+
+    #region AMBIENCE
     bool isFirstCooldown = true;
     bool hasFirstAudioPlayed = false;
     bool isAudioPlaying = false;
@@ -13,16 +17,23 @@ public class BackGroundAudio : MonoBehaviour {
     int ambientSFXCount = 1;
     int lastAmbientSFXID = 0;
 
-    [SerializeField]
-    AudioSource audioSource;
-
     float firstCicadasAudioCooldown = 1.5f;
     float audioMinCooldown = 10f;
     float audioMaxCooldown = 22f;
     float audioNextPlayTime;
+    #endregion
 
-	// Update is called once per frame
-	void Update ()
+    #region ENEMY
+    [SerializeField]
+    AudioClip enemyDeathSFX;
+    float enemeyDeathSFXVolume = 0.2f;
+    #endregion
+
+    public void PlayEnemyDeathSFX()
+    {
+        audioSource.PlayOneShot(enemyDeathSFX, enemeyDeathSFXVolume);
+    }
+    void Update ()
     {
         if (isFirstCooldown)
         {

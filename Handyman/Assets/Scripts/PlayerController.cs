@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
     AudioSource audioSource;
     [SerializeField]
     AudioClip throwHeadSFX;
+    [SerializeField]
+    AudioClip pickUpItemSFX;
 
     // WALKING
     [SerializeField]
@@ -283,6 +285,11 @@ public class PlayerController : MonoBehaviour
     {
         //audioSource.PlayOneShot(punchContact);
         audioSource.PlayOneShot(punchThrow,0.2f);
+    }
+
+    public void PlayPickupItemSFX()
+    {
+        audioSource.PlayOneShot(pickUpItemSFX, 0.25f);
     }
 
     void ManageWalkingAudio()

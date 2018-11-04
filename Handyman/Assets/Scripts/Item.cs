@@ -188,6 +188,11 @@ public class Item : MonoBehaviour
         isSelfDestructing = false;
         if (currentState != Item.ItemState.EquippedByEnemy)
         {
+            if (currentState != ItemState.Equipped)
+            {
+                playerController.PlayPickupItemSFX();
+            }
+
             currentState = ItemState.InInventory;
 
             playerController.AddItemToInventory(this, isInInventory);

@@ -1084,10 +1084,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4761052994255338, guid: ba5d39a2f24b54546a561da2852923c2, type: 2}
-      propertyPath: m_LocalScale.x
-      value: -1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba5d39a2f24b54546a561da2852923c2, type: 2}
   m_IsPrefabAsset: 0
@@ -1824,7 +1820,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 234862821}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: HeadPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2564,14 +2560,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4730087483858412, guid: d3145383a4998e448b896715d75ab74b, type: 2}
       propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4730087483858412, guid: d3145383a4998e448b896715d75ab74b, type: 2}
-      propertyPath: m_LocalScale.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4730087483858412, guid: d3145383a4998e448b896715d75ab74b, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3956,7 +3944,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4919
+    m_Bits: 37687
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -4435,10 +4423,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 4085725816463492, guid: c103ce5327bba5f4e826b6cf1f416fcd, type: 2}
-      propertyPath: m_LocalScale.x
-      value: -1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c103ce5327bba5f4e826b6cf1f416fcd, type: 2}
   m_IsPrefabAsset: 0
@@ -4556,10 +4540,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 4337522782324468, guid: c9e186a62ce4644438cb7ef9a9d1fc5c, type: 2}
-      propertyPath: m_LocalScale.x
-      value: -1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9e186a62ce4644438cb7ef9a9d1fc5c, type: 2}
   m_IsPrefabAsset: 0
@@ -4607,10 +4587,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 4631527620441850, guid: a2fa076671f2dc24099583159681bd72, type: 2}
-      propertyPath: m_LocalScale.x
-      value: -1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2fa076671f2dc24099583159681bd72, type: 2}
   m_IsPrefabAsset: 0
@@ -4652,10 +4628,6 @@ Prefab:
     - target: {fileID: 4881813146812950, guid: 637bd8ebc22934d44b389fae9dd2579c, type: 2}
       propertyPath: m_RootOrder
       value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4881813146812950, guid: 637bd8ebc22934d44b389fae9dd2579c, type: 2}
-      propertyPath: m_LocalScale.x
-      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 637bd8ebc22934d44b389fae9dd2579c, type: 2}
@@ -4881,10 +4853,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4185910770451996, guid: 2f08874ab3237f34283b5c2ec6a52944, type: 2}
       propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1252420799989686, guid: 2f08874ab3237f34283b5c2ec6a52944, type: 2}
-      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5958,7 +5926,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 739987230}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: LeftHandPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6746,7 +6714,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 916481350}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: RightLegPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7277,10 +7245,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 4149379622096076, guid: 65895556cb4457d49a0116689caf9c64, type: 2}
-      propertyPath: m_LocalScale.x
-      value: -1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65895556cb4457d49a0116689caf9c64, type: 2}
   m_IsPrefabAsset: 0
@@ -7322,10 +7286,6 @@ Prefab:
     - target: {fileID: 4989003795691402, guid: 72fe8379e0afaaa46a724a44b3ffc552, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4989003795691402, guid: 72fe8379e0afaaa46a724a44b3ffc552, type: 2}
-      propertyPath: m_LocalScale.x
-      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72fe8379e0afaaa46a724a44b3ffc552, type: 2}
@@ -7515,10 +7475,6 @@ Prefab:
     - target: {fileID: 4728726034331174, guid: 71e34de58fbf99442b72afa03e7b733a, type: 2}
       propertyPath: m_RootOrder
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4728726034331174, guid: 71e34de58fbf99442b72afa03e7b733a, type: 2}
-      propertyPath: m_LocalScale.x
-      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71e34de58fbf99442b72afa03e7b733a, type: 2}
@@ -8066,7 +8022,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1016386310}
   - component: {fileID: 1016386311}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8263,7 +8219,7 @@ GameObject:
   - component: {fileID: 1034815657}
   - component: {fileID: 1034815658}
   - component: {fileID: 1034815659}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -8298,6 +8254,7 @@ MonoBehaviour:
   defeatWindow: {fileID: 423953439}
   audioSource: {fileID: 1034815659}
   throwHeadSFX: {fileID: 8300000, guid: 17330eaacada5554c914013ab4e0c4e2, type: 3}
+  pickUpItemSFX: {fileID: 8300000, guid: 2bba1e291d3235f4cb4f0d9bb03d6915, type: 3}
   walkSFXs:
   - {fileID: 8300000, guid: c416f62ee96d0634d841640aca4de3c7, type: 3}
   - {fileID: 8300000, guid: b2db86e2b59eea14faf5fe312a8d812c, type: 3}
@@ -8901,7 +8858,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1081880175}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: RightHandPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10825,10 +10782,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 4614626893849004, guid: 2f679c8f36c6b454d9a13716040fb11e, type: 2}
-      propertyPath: m_LocalScale.x
-      value: -1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f679c8f36c6b454d9a13716040fb11e, type: 2}
   m_IsPrefabAsset: 0
@@ -10995,7 +10948,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1323241526}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: LeftLegPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11836,7 +11789,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1483438362}
   - component: {fileID: 1483438363}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11921,7 +11874,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1532265578
 Transform:
   m_ObjectHideFlags: 0
@@ -12651,7 +12604,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1581227036}
   - component: {fileID: 1581227037}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14622,7 +14575,7 @@ GameObject:
   - component: {fileID: 1745536698}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: AudioManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14746,10 +14699,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a6ba021d18f82141ae4b2648e58716d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 1745536698}
   ambientSFX:
   - {fileID: 8300000, guid: f9e5a26ff68c26440ba57e4587fed54b, type: 3}
   - {fileID: 8300000, guid: fec4dccf208392d47beaad34a71a8a17, type: 3}
-  audioSource: {fileID: 1745536698}
+  enemyDeathSFX: {fileID: 8300000, guid: fc5910723fd29eb4e8f7ebdc19f766dc, type: 3}
 --- !u!1 &1754372805
 GameObject:
   m_ObjectHideFlags: 0
@@ -16017,7 +15971,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2004934081}
   - component: {fileID: 2004934082}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}

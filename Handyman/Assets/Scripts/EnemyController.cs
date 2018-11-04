@@ -72,6 +72,7 @@ public class EnemyController : MonoBehaviour
         if (!isDead)
         {
             isDead = true;
+            GameObject.FindGameObjectWithTag("AudioManager").GetComponent<BackGroundAudio>().PlayEnemyDeathSFX();
             DropItem();
             PlayerData.current.currentScore++;
             Destroy(gameObject);
