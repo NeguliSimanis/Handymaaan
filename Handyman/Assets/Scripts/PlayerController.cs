@@ -42,6 +42,12 @@ public class PlayerController : MonoBehaviour
     GameObject defeatWindow;
     #endregion
 
+    #region ANIMATION
+    [SerializeField]
+    Animator bloodAnimator;
+    string bloodTriggerName = "throw";
+    #endregion
+
     #region AUDIO
     [Header("AUDIO")]
     [SerializeField]
@@ -153,6 +159,7 @@ public class PlayerController : MonoBehaviour
     {
         if (equippedSlots.headItem != null)
         {
+            bloodAnimator.SetTrigger(bloodTriggerName);
             audioSource.PlayOneShot(throwHeadSFX);
             equippedSlots.headItem.Throw(isFacingRight);
         }
