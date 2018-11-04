@@ -38,6 +38,10 @@ public class EquippedSlots : MonoBehaviour
             {
                 leftLegItem.UnEquipItem();
             }
+            else
+            {
+                AddLegEffect();
+            }
 
             leftLegItem = itemToEquip;
             // shows equipped item image
@@ -53,7 +57,13 @@ public class EquippedSlots : MonoBehaviour
 
             //HIDE ITEM FROM BACKPACK
             RemoveFromBackpack();
+            
         }
+    }
+
+    private void AddLegEffect()
+    {
+        PlayerData.current.moveSpeed += PlayerData.current.moveSpeedBonusPerLeg;
     }
 
     private void EquipRightLeg()
@@ -64,6 +74,10 @@ public class EquippedSlots : MonoBehaviour
             if (rightLegItem != null)
             {
                 rightLegItem.UnEquipItem();
+            }
+            else
+            {
+                AddLegEffect();
             }
 
             rightLegItem = itemToEquip;
