@@ -44,6 +44,10 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         currentHP = maxHP;
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        }
         playerTransform = player.gameObject.GetComponent<Transform>();
     }
 
@@ -73,7 +77,8 @@ public class EnemyController : MonoBehaviour
        // enemyLimb.transform.parent = null;
        // enemyLimb.currentState = Item.ItemState.OnGround;
 
-        GameObject drop = Instantiate(itemToDrop, transform);
+        GameObject drop = Instantiate(gameObject.GetComponent<EnemyDrops>().GetDrop());
+        drop.transform.position = transform.position;
         drop.transform.parent = null;
     }
 

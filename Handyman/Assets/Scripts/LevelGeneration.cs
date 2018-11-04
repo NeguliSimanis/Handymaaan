@@ -3,6 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelGeneration : MonoBehaviour {
+    #region SPAWNIGN ENEMIES
+    [SerializeField]
+    bool canSpawnEnemies;
+
+    [SerializeField]
+    GameObject[] levelSegmentsWithEnemies;
+
+    int segmentsUntilNextEnemySpawn;
+    int default_segmentsUntilNextEnemySpawn = 3;
+    #endregion
 
     [SerializeField]
     Transform player;
@@ -45,6 +55,7 @@ public class LevelGeneration : MonoBehaviour {
         // Debug.Log("distance to left point " + (transform.position.x - leftGenerationPoint.position.x)); // 12.97923
         levelSegmentWidth = defaultLevelSegment[0].transform.GetChild(0).gameObject.GetComponent<BoxCollider2D>().size.x;
         incrementLength = incrementMultiplier * levelSegmentWidth;
+        segmentsUntilNextEnemySpawn = default_segmentsUntilNextEnemySpawn + 2;
        
     }
 	
@@ -72,7 +83,7 @@ public class LevelGeneration : MonoBehaviour {
     /// </summary>
     void GenerateLeftSegment()
     {
-        GameObject levelSegment = Instantiate(defaultLevelSegment[0], null);
+        GameObject levelSegment = GenerateSegment();
         levelSegment.transform.position = new Vector3(leftGenerationPoint.transform.position.x, transform.position.y, 0f);
 
        /* // generate mountain
@@ -81,6 +92,7 @@ public class LevelGeneration : MonoBehaviour {
 
         MoveOnXAxis(false);
         
+        
     }
 
     /// <summary>
@@ -88,7 +100,7 @@ public class LevelGeneration : MonoBehaviour {
     /// </summary>
     void GenerateRightSegment()
     {
-        GameObject levelSegment = Instantiate(defaultLevelSegment[0], null);
+        GameObject levelSegment = GenerateSegment();
         levelSegment.transform.position = new Vector3 (rightGenerationPoint.transform.position.x - 0.38528f, transform.position.y, 0f);
 
        /* // generate mountain
@@ -96,6 +108,22 @@ public class LevelGeneration : MonoBehaviour {
         mountainSegment.transform.position = new Vector3(rightMountainGenerationPoint.transform.position.x, transform.position.y, 0f);*/
 
         MoveOnXAxis(true);
+    }
+
+    GameObject GenerateSegment()
+    {
+        GameObject levelSegment;
+        if (segmentsUntilNextEnemySpawn <= 0)
+        {
+            levelSegment = Instantiate(levelSegmentsWithEnemies[0], null);
+            segmentsUntilNextEnemySpawn = default_segmentsUntilNextEnemySpawn;
+        }
+        else
+        {
+            levelSegment = Instantiate(defaultLevelSegment[0], null);
+            segmentsUntilNextEnemySpawn--;
+        }
+        return levelSegment;
     }
 
     void MoveOnXAxis(bool moveRight)
