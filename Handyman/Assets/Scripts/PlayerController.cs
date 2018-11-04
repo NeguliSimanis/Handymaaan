@@ -48,8 +48,17 @@ public class PlayerController : MonoBehaviour
     AudioSource audioSource;
     [SerializeField]
     AudioClip throwHeadSFX;
+
+    // WALKING
     [SerializeField]
-    AudioClip walkSFX;
+    AudioClip [] walkSFXs;
+    bool isWalkSFXCooldown = false;
+    float minWalkSFXCooldown = 2.3f;
+    float maxWalkSFXCooldown = 3.5f;
+    float walkSFXCooldownResetTime;
+    
+
+    // PUNCHING
     [SerializeField]
     AudioClip punchContact;
     [SerializeField]
@@ -128,7 +137,6 @@ public class PlayerController : MonoBehaviour
         {
             if (!isAttackCooldown)
             {
-                PlayPunchThrowSFX();
                 Attack();
             }
         }
@@ -157,12 +165,18 @@ public class PlayerController : MonoBehaviour
 
     void UseAttackLimb()
     {
+        bool shouldPlaySFX = false;
         foreach (Item limb in equippedLimbs)
         {
             if (limb.currentPlayerSlot == Item.EquippedSlot.LeftHand || limb.currentPlayerSlot == Item.EquippedSlot.RightHand)
+            {
+                shouldPlaySFX = true;
                 limb.StartAttack();
+            }
         }
-
+        // play punch only if you have equipped a hand
+        if (shouldPlaySFX)
+            PlayPunchThrowSFX();
     }
 
     void PlayIntro()
@@ -262,7 +276,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void PlayPunchContactSFX()
     {
-        audioSource.PlayOneShot(punchContact);
+        audioSource.PlayOneShot(punchContact,0.7f);
     }
 
     public void PlayPunchThrowSFX()
@@ -275,7 +289,17 @@ public class PlayerController : MonoBehaviour
     {
         if (isWalking)
         {
-
+            // play walk sfx if player has legs
+            if (!isWalkSFXCooldown && (equippedSlots.rightLegItem != null || equippedSlots.leftLegItem != null))
+            {
+                isWalkSFXCooldown = true;
+                walkSFXCooldownResetTime = Time.time + Random.Range(minWalkSFXCooldown, maxWalkSFXCooldown);
+                audioSource.PlayOneShot(walkSFXs[Random.Range(0,walkSFXs.Length-1)], 0.2f);
+            }
+            else if (Time.time > walkSFXCooldownResetTime)
+            {
+                isWalkSFXCooldown = false;
+            }
         }
     }
     #endregion

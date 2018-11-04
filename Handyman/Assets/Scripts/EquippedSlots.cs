@@ -16,8 +16,8 @@ public class EquippedSlots : MonoBehaviour
     public Item headItem = null;
     Item leftArmItem = null;
     Item rightArmItem = null;
-    Item leftLegItem = null;
-    Item rightLegItem = null;
+    public Item leftLegItem = null;
+    public Item rightLegItem = null;
     #endregion
 
     private void Start()

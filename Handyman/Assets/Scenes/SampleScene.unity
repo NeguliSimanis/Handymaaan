@@ -655,6 +655,8 @@ MonoBehaviour:
   - {fileID: 953464104}
   - {fileID: 228898412}
   headItem: {fileID: 0}
+  leftLegItem: {fileID: 0}
+  rightLegItem: {fileID: 0}
 --- !u!1 &121964640
 GameObject:
   m_ObjectHideFlags: 0
@@ -8296,7 +8298,10 @@ MonoBehaviour:
   defeatWindow: {fileID: 423953439}
   audioSource: {fileID: 1034815659}
   throwHeadSFX: {fileID: 8300000, guid: 17330eaacada5554c914013ab4e0c4e2, type: 3}
-  walkSFX: {fileID: 0}
+  walkSFXs:
+  - {fileID: 8300000, guid: c416f62ee96d0634d841640aca4de3c7, type: 3}
+  - {fileID: 8300000, guid: b2db86e2b59eea14faf5fe312a8d812c, type: 3}
+  - {fileID: 8300000, guid: 69e10112ca04adc45a1f5b251026fc9a, type: 3}
   punchContact: {fileID: 8300000, guid: 8413690768ac01c4f86a7410a4ea4b8d, type: 3}
   punchThrow: {fileID: 8300000, guid: d2a5cd42b948cf14694e55fb5b7b4dc3, type: 3}
   introLimbs:
@@ -8671,8 +8676,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: BTW, the generated objects are never destroyed, so at one point doing this
-    might crash your PC
+  m_Text: BTW, the generated objects are never destroyed, so at one point this might
+    crash your PC
 --- !u!222 &1048582648
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11916,7 +11921,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1532265578
 Transform:
   m_ObjectHideFlags: 0
@@ -11924,7 +11929,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1532265577}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.752084, y: -1.7435026, z: 0}
+  m_LocalPosition: {x: -4.752084, y: -5.35, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 1511670450}
