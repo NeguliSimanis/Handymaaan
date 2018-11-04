@@ -7,7 +7,7 @@ public class Item : MonoBehaviour
 {
     #region PROPERTIES
     public string itemName;
-    float rotationSpeed = 390f;
+    float rotationSpeed = 2690f;
     public Sprite itemImage;
     [SerializeField]
     EnemyController parentEnemyController;
@@ -40,7 +40,7 @@ public class Item : MonoBehaviour
     EnemyController currentEnemy;
 
     public int attackDamage;
-    float attackDuration = 0.4f;
+    float attackDuration = 0.1f;
     float attackCooldownResetTime;
     float attackStartTime;
     #endregion
@@ -239,7 +239,9 @@ public class Item : MonoBehaviour
         transform.RotateAround(legRotationAxis.position, new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime * (1 + (Time.time - attackStartTime)));
 
         if (currentState != ItemState.EquippedByEnemy)
+        {
             DealDamageToEnemy();
+        }
     }
 
     private void DealDamageToEnemy()

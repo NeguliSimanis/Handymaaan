@@ -15,7 +15,7 @@ public class PlayerData
     #endregion
 
     #region HEALTH
-    public int maxHP = 100;
+    public int maxHP = 50;
     public int currentHP;
     #endregion
 

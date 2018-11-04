@@ -50,6 +50,10 @@ public class PlayerController : MonoBehaviour
     AudioClip throwHeadSFX;
     [SerializeField]
     AudioClip walkSFX;
+    [SerializeField]
+    AudioClip punchContact;
+    [SerializeField]
+    AudioClip punchThrow;
     #endregion
 
     #region INTRO
@@ -76,14 +80,6 @@ public class PlayerController : MonoBehaviour
         CheckIfDead();
         CheckWherePlayerIsFacing();
         ManageWalkingAudio();
-    }
-
-    void ManageWalkingAudio()
-    {
-        if (isWalking)
-        {
-
-        }
     }
 
     void CheckWherePlayerIsFacing()
@@ -132,6 +128,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!isAttackCooldown)
             {
+                PlayPunchThrowSFX();
                 Attack();
             }
         }
@@ -258,4 +255,28 @@ public class PlayerController : MonoBehaviour
         slotToFill.FillSlot(itemToAdd);
         slotToFill.equippedSlots = equippedSlots;
     }
+
+    #region SFX methods
+    /// <summary>
+    /// plays sfx when your melee attack harms enemy
+    /// </summary>
+    public void PlayPunchContactSFX()
+    {
+        audioSource.PlayOneShot(punchContact);
+    }
+
+    public void PlayPunchThrowSFX()
+    {
+        //audioSource.PlayOneShot(punchContact);
+        audioSource.PlayOneShot(punchThrow,0.2f);
+    }
+
+    void ManageWalkingAudio()
+    {
+        if (isWalking)
+        {
+
+        }
+    }
+    #endregion
 }

@@ -53,6 +53,12 @@ public class EnemyController : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        if (!isDead)
+        {
+            player.PlayPunchContactSFX();
+        }
+        else
+            return;
         currentHP -= amount;
         Debug.Log(currentHP);
         if (currentHP <= 0)
