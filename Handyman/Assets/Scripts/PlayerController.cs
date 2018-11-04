@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
     AudioSource audioSource;
     [SerializeField]
     AudioClip throwHeadSFX;
+    [SerializeField]
+    AudioClip walkSFX;
     #endregion
 
     #region INTRO
@@ -73,8 +75,16 @@ public class PlayerController : MonoBehaviour
         ManageKeyInput();
         CheckIfDead();
         CheckWherePlayerIsFacing();
+        ManageWalkingAudio();
     }
 
+    void ManageWalkingAudio()
+    {
+        if (isWalking)
+        {
+
+        }
+    }
 
     void CheckWherePlayerIsFacing()
     {

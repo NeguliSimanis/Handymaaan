@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 61698495823922352}
   - component: {fileID: 114381986172366908}
   - component: {fileID: 50427705135174830}
+  - component: {fileID: 114516711684915012}
   m_Layer: 2
   m_Name: Enemy
   m_TagString: Enemy
@@ -2115,6 +2116,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 114359702547941520}
+--- !u!114 &114516711684915012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1278426579915270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d20e809804eeb884db8ecb0de82a4bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PossibleDrops:
+  - {fileID: 1658952897077200, guid: 72fe8379e0afaaa46a724a44b3ffc552, type: 2}
+  - {fileID: 1544287448252062, guid: d3145383a4998e448b896715d75ab74b, type: 2}
+  - {fileID: 1447207387637566, guid: 65895556cb4457d49a0116689caf9c64, type: 2}
+  - {fileID: 1209606939066468, guid: a2fa076671f2dc24099583159681bd72, type: 2}
+  - {fileID: 1336817812837612, guid: c103ce5327bba5f4e826b6cf1f416fcd, type: 2}
 --- !u!114 &114546931382373352
 MonoBehaviour:
   m_ObjectHideFlags: 1
