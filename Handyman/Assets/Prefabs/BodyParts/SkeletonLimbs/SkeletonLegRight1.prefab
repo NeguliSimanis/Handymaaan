@@ -58,6 +58,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4455584222360198}
   - component: {fileID: 212416654930577294}
+  - component: {fileID: 114207755995445384}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -371,6 +372,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114207755995445384
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1495766047897804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 706165a8ea430e04cb6dab43b4e93d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  limbVariations:
+  - {fileID: 21300000, guid: 3c3d86f4e78185e419d7586977ead0c9, type: 3}
+  - {fileID: 21300000, guid: f81d8b65125abcb42b01104c1b422e52, type: 3}
+  - {fileID: 21300000, guid: ecb610d1a22c8a0499d71e0bd0839cea, type: 3}
 --- !u!114 &114219930123771288
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4899722715017366}
   - component: {fileID: 212208549096606226}
+  - component: {fileID: 114517667329587222}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -419,6 +420,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 114454980538116966}
+--- !u!114 &114517667329587222
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1128991512545824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 706165a8ea430e04cb6dab43b4e93d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  limbVariations:
+  - {fileID: 21300000, guid: 7a041923838e81c4cbc775df217409e1, type: 3}
+  - {fileID: 21300000, guid: dc541260702f8184c97eff77f9e73222, type: 3}
+  - {fileID: 21300000, guid: 4edc8fee576233d4389e44d00085a8e1, type: 3}
 --- !u!114 &114906879264109196
 MonoBehaviour:
   m_ObjectHideFlags: 1

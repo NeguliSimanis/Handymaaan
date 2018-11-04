@@ -56,6 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4819020403520558}
   - component: {fileID: 212261098545611870}
+  - component: {fileID: 114096763721627636}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -104,7 +105,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1447207387637566}
   m_LocalRotation: {x: -0, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.7243195, y: 1.2915481, z: 0}
+  m_LocalPosition: {x: 19.412992, y: -2.7244692, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 4819020403520558}
@@ -371,6 +372,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114096763721627636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1485579563893016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 706165a8ea430e04cb6dab43b4e93d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  limbVariations:
+  - {fileID: 21300000, guid: 11e646d9b5aa74d4f9c233419e3e6e0c, type: 3}
+  - {fileID: 21300000, guid: 6b7f65b9e6b6f7d40a635ba8fd3f88a8, type: 3}
+  - {fileID: 21300000, guid: f8d214eac50ef724aa23fda959c80d0a, type: 3}
+  - {fileID: 21300000, guid: c08143c811774fb46ba7a458210bc2b7, type: 3}
+  - {fileID: 21300000, guid: 12ae76d187035ad498ebaa0b6e147c2e, type: 3}
+  - {fileID: 21300000, guid: fe8ff1b2f22532a4ab5bb550d04f4e80, type: 3}
+  - {fileID: 21300000, guid: 9973296e0294f08448ed53861cadc2ae, type: 3}
 --- !u!114 &114247366107752056
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -16,6 +16,9 @@ public class GenerateItemName
         "Blue-haired",
         "Mysterious",
         "Dirty",
+        "Savage",
+        "Pirate's",
+        "Pale"
     };
 
     static string[] legNames =

@@ -9,6 +9,7 @@ public class EnemyDrops : MonoBehaviour
 
     public GameObject GetDrop()
     {
+        //return PossibleDrops[2];
         return PossibleDrops[Random.Range(0, PossibleDrops.Length - 1)];
     }
 }
